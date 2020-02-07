@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Sidebar from '../../components/Sidebar';
 import Chips from '../../components/Chips';
+import Faq from '../../components/Faq';
 import CompanyCard from '../../components/CompanyCard';
 import DetailedExpansionPanel from '../../components/DetailedExpansionPanel';
 
@@ -39,6 +40,7 @@ const Company = () => {
               remaining 4 1/2 cups chicken broth; bring to a boil.
             </Typography>
             <Chips
+              title="Categories"
               categories={[{ name: 'category 1' }, { name: 'category 2' }]}
             />
           </Grid>
@@ -49,6 +51,18 @@ const Company = () => {
             <h1>Company: {company}</h1>
             <DetailedExpansionPanel />
             <DetailedExpansionPanel />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <h3>Frequently Asked Questions:</h3>
+            <Faq
+              questions={[
+                { question: 'Do you ship internationally?', answer: 'text1' },
+                {
+                  question: 'How long will it take for my order to arrive?',
+                  answer: 'text2'
+                }
+              ]}
+            />
           </Grid>
           <Grid item xs={12} md={9}>
             <Typography variant="h6" gutterBottom>

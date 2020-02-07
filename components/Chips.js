@@ -17,11 +17,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Chips(props) {
   const classes = useStyles();
-  const { categories } = props;
+  const { title, categories } = props;
 
   return (
     <div className={classes.root}>
-      <h4>Categories:</h4>
+      <h4>{title}:</h4>
       {categories.map((category, index) => (
         <Chip
           key={index}
@@ -36,5 +36,6 @@ export default function Chips(props) {
 }
 
 Chips.propTypes = {
+  title: PropTypes.string,
   categories: PropTypes.array
 };
