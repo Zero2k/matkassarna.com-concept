@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Link from './Link';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -57,6 +58,8 @@ export default function FeaturedCompany(props) {
               color="secondary"
               size="small"
               className={classes.button}
+              component={Link}
+              naked
               href={company.url}
             >
               Information
