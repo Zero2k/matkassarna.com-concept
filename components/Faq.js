@@ -35,6 +35,7 @@ export default function Faq(props) {
     <div className={classes.root}>
       {questions.map((q, index) => (
         <ExpansionPanel
+          key={index}
           expanded={expanded === index}
           onChange={handleChange(index)}
         >

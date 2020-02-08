@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="white" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -20,9 +20,25 @@ function Copyright() {
 
 const useStyles = makeStyles(theme => ({
   footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6, 0),
-    marginTop: theme.spacing(4)
+    width: '100%',
+    backgroundColor: '#3c3c3c',
+    color: '#fff'
+  },
+  sectionLinks: {
+    display: 'flex',
+    margin: theme.spacing(4, 0, 4, 0),
+    padding: theme.spacing(6, 0)
+  },
+  copyright: {
+    padding: theme.spacing(4, 0)
+  },
+  column: {
+    flexBasis: '33.33%'
+  },
+  hr: {
+    width: '60px',
+    backgroundColor: '#7c4dff !important',
+    display: 'inline-block'
   }
 }));
 
@@ -33,18 +49,25 @@ export default function Footer(props) {
   return (
     <footer className={classes.footer}>
       <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
-          {title}
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          {description}
-        </Typography>
-        <Copyright />
+        <section className={classes.sectionLinks}>
+          <div className={classes.column}>
+            <Typography variant="subtitle1">COMPANY NAME</Typography>
+            <hr className={classes.hr} />
+          </div>
+          <div className={classes.column}>
+            <Typography variant="subtitle1">PRODUCTS</Typography>
+            <hr className={classes.hr} />
+          </div>
+          <div className={classes.column}>
+            <Typography variant="subtitle1">USEFUL LINKS</Typography>
+            <hr className={classes.hr} />
+          </div>
+        </section>
+      </Container>
+      <Container maxWidth="lg">
+        <section className={classes.copyright}>
+          <Copyright />
+        </section>
       </Container>
     </footer>
   );
