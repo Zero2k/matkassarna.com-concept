@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="white" align="center">
+    <Typography variant="body2" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -21,19 +22,16 @@ function Copyright() {
 const useStyles = makeStyles(theme => ({
   footer: {
     width: '100%',
-    backgroundColor: '#3c3c3c',
     color: '#fff'
   },
-  sectionLinks: {
-    display: 'flex',
-    margin: theme.spacing(4, 0, 4, 0),
+  links: {
+    backgroundColor: '#292929',
+    margin: theme.spacing(4, 0, 0, 0),
     padding: theme.spacing(6, 0)
   },
   copyright: {
-    padding: theme.spacing(4, 0)
-  },
-  column: {
-    flexBasis: '33.33%'
+    backgroundColor: '#212121',
+    padding: theme.spacing(2, 0)
   },
   hr: {
     width: '60px',
@@ -48,27 +46,33 @@ export default function Footer(props) {
 
   return (
     <footer className={classes.footer}>
-      <Container maxWidth="lg">
-        <section className={classes.sectionLinks}>
-          <div className={classes.column}>
-            <Typography variant="subtitle1">COMPANY NAME</Typography>
-            <hr className={classes.hr} />
-          </div>
-          <div className={classes.column}>
-            <Typography variant="subtitle1">PRODUCTS</Typography>
-            <hr className={classes.hr} />
-          </div>
-          <div className={classes.column}>
-            <Typography variant="subtitle1">USEFUL LINKS</Typography>
-            <hr className={classes.hr} />
-          </div>
-        </section>
-      </Container>
-      <Container maxWidth="lg">
-        <section className={classes.copyright}>
+      <div className={classes.links}>
+        <Container maxWidth="lg">
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Typography variant="subtitle1">COMPANY NAME</Typography>
+              <hr className={classes.hr} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Typography variant="subtitle1">PRODUCTS</Typography>
+              <hr className={classes.hr} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Typography variant="subtitle1">USEFUL LINKS</Typography>
+              <hr className={classes.hr} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Typography variant="subtitle1">CONTACT</Typography>
+              <hr className={classes.hr} />
+            </Grid>
+          </Grid>
+        </Container>
+      </div>
+      <div className={classes.copyright}>
+        <Container maxWidth="lg">
           <Copyright />
-        </section>
-      </Container>
+        </Container>
+      </div>
     </footer>
   );
 }
