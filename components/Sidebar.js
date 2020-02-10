@@ -20,7 +20,7 @@ const social = [
   { name: 'Facebook', icon: FacebookIcon }
 ];
 
-export default function Sidebar(props) {
+const Sidebar = () => {
   const classes = useStyles();
 
   return (
@@ -40,8 +40,6 @@ export default function Sidebar(props) {
       ))}
     </Grid>
   );
-}
-
-Sidebar.propTypes = {
-  social: PropTypes.array
 };
+
+export default Sidebar;

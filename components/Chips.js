@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Chips(props) {
+const Chips = props => {
   const classes = useStyles();
   const { title, categories } = props;
 
@@ -33,9 +33,11 @@ export default function Chips(props) {
       ))}
     </div>
   );
-}
+};
 
 Chips.propTypes = {
   title: PropTypes.string,
   categories: PropTypes.array
 };
+
+export default Chips;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +11,9 @@ import Link from '@material-ui/core/Link';
 import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%'
+  },
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`
   },
@@ -18,7 +22,8 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarSecondary: {
     justifyContent: 'space-between',
-    overflowX: 'auto'
+    overflowX: 'auto',
+    marginBottom: '5px'
   },
   toolbarLink: {
     padding: theme.spacing(1),
@@ -35,63 +40,70 @@ const StyledBadge = withStyles(theme => ({
   }
 }))(Badge);
 
-export default function Header(props) {
+const Header = props => {
   const classes = useStyles();
   const { sections, title } = props;
 
   return (
     <React.Fragment>
-      <Toolbar className={classes.toolbar}>
-        <Button
-          style={{ backgroundColor: 'transparent' }}
-          component={Link}
-          href="/"
-        >
-          Home
-        </Button>
-        <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="center"
-          noWrap
-          className={classes.toolbarTitle}
-        >
-          {title}
-        </Typography>
-        <IconButton
-          aria-label="compare"
-          style={{ backgroundColor: 'transparent' }}
-        >
-          <StyledBadge badgeContent="0" color="primary">
-            <SwapVertIcon />
-          </StyledBadge>
-        </IconButton>
-      </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        className={classes.toolbarSecondary}
-      >
-        {sections.map(section => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            as={section.url}
-            className={classes.toolbarLink}
+      <div className={classes.root}>
+        <Container>
+          <Toolbar disableGutters className={classes.toolbar}>
+            <Button
+              style={{ backgroundColor: 'transparent' }}
+              component={Link}
+              href="/"
+            >
+              Home
+            </Button>
+            <Typography
+              component="h2"
+              variant="h5"
+              color="inherit"
+              align="center"
+              noWrap
+              className={classes.toolbarTitle}
+            >
+              {title}
+            </Typography>
+            <IconButton
+              aria-label="compare"
+              style={{ backgroundColor: 'transparent' }}
+            >
+              <StyledBadge badgeContent="0" color="primary">
+                <SwapVertIcon />
+              </StyledBadge>
+            </IconButton>
+          </Toolbar>
+          <Toolbar
+            component="nav"
+            variant="dense"
+            disableGutters
+            className={classes.toolbarSecondary}
           >
-            {section.title}
-          </Link>
-        ))}
-      </Toolbar>
+            {sections.map(section => (
+              <Link
+                color="inherit"
+                noWrap
+                key={section.title}
+                variant="body2"
+                href={section.url}
+                as={section.url}
+                className={classes.toolbarLink}
+              >
+                {section.title}
+              </Link>
+            ))}
+          </Toolbar>
+        </Container>
+      </div>
     </React.Fragment>
   );
-}
+};
 
 Header.propTypes = {
   sections: PropTypes.array,
   title: PropTypes.string
 };
+
+export default Header;

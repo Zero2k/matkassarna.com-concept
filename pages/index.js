@@ -56,7 +56,7 @@ class Index extends React.Component {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <Grid container spacing={5} className={classes.mainGrid}>
+          <Grid container spacing={3} className={classes.mainGrid}>
             <Main title="Compare Companies:" data={data} />
             <Sidebar />
           </Grid>

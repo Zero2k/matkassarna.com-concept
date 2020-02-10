@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function FeaturedPost(props) {
+const FeaturedPost = props => {
   const classes = useStyles();
   const { post } = props;
 
@@ -56,8 +56,10 @@ export default function FeaturedPost(props) {
       </CardActionArea>
     </Grid>
   );
-}
+};
 
 FeaturedPost.propTypes = {
   post: PropTypes.object
 };
+
+export default FeaturedPost;

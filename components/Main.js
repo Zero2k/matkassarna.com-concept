@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Main(props) {
+const Main = props => {
   const classes = useStyles();
   const { data, title } = props;
 
@@ -23,16 +23,18 @@ export default function Main(props) {
         {title}
       </Typography>
       <Divider />
-      <Grid container spacing={3} className={classes.mainGrid}>
+      <Grid container spacing={2} className={classes.mainGrid}>
         {data.map((item, index) => (
           <FeaturedCompany key={index} company={item} />
         ))}
       </Grid>
     </Grid>
   );
-}
+};
 
 Main.propTypes = {
   data: PropTypes.array,
   title: PropTypes.string
 };
+
+export default Main;

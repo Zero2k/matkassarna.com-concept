@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function FeaturedCompany(props) {
+const FeaturedCompany = props => {
   const classes = useStyles();
   const { company } = props;
 
@@ -69,8 +69,10 @@ export default function FeaturedCompany(props) {
       </Card>
     </Grid>
   );
-}
+};
 
 FeaturedCompany.propTypes = {
   company: PropTypes.object
 };
+
+export default FeaturedCompany;

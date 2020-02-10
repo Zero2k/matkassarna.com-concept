@@ -73,8 +73,8 @@ export default class MyApp extends App {
         <Provider {...this.stores}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <Header title="Logo.com" sections={sections} />
             <Container maxWidth="lg">
-              <Header title="Logo.com" sections={sections} />
               <Component {...pageProps} />
             </Container>
             <Footer

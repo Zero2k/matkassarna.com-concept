@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CompanyCard() {
+const CompanyCard = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -77,4 +77,6 @@ export default function CompanyCard() {
       </Collapse>
     </Card>
   );
-}
+};
+
+export default CompanyCard;

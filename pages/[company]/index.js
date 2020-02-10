@@ -24,7 +24,7 @@ const Company = () => {
   return (
     <React.Fragment>
       <main>
-        <Grid container spacing={5} className={classes.mainGrid}>
+        <Grid container spacing={3} className={classes.mainGrid}>
           <Grid item xs={12} sm={7} md={8}>
             <Typography variant="h1" gutterBottom>
               {company}

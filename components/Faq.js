@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Faq(props) {
+const Faq = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(0);
   const { questions } = props;
@@ -53,8 +53,10 @@ export default function Faq(props) {
       ))}
     </div>
   );
-}
+};
 
 Faq.propTypes = {
   questions: PropTypes.array
 };
+
+export default Faq;
