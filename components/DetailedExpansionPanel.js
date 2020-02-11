@@ -14,7 +14,7 @@ import Divider from '@material-ui/core/Divider';
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    paddingBottom: '10px'
+    paddingBottom: theme.spacing(2)
   },
   heading: {
     fontSize: theme.typography.pxToRem(15)
@@ -111,7 +111,12 @@ const DetailedExpansionPanel = () => {
           <Button size="medium" color="primary" startIcon={<SwapVertIcon />}>
             Compare
           </Button>
-          <Button size="medium" color="secondary" variant="contained">
+          <Button
+            size="medium"
+            color="secondary"
+            variant="contained"
+            disableElevation
+          >
             View More
           </Button>
         </ExpansionPanelActions>

@@ -51,7 +51,7 @@ class Index extends React.Component {
       <React.Fragment>
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
+          <Grid container spacing={3}>
             {featuredPosts.map(post => (
               <FeaturedPost key={post.title} post={post} />
             ))}

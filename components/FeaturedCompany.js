@@ -50,6 +50,7 @@ const FeaturedCompany = props => {
               className={classes.button}
               startIcon={<SwapVertIcon />}
               onClick={() => console.log(company)}
+              disableElevation
             >
               Compare
             </Button>
@@ -59,8 +60,8 @@ const FeaturedCompany = props => {
               size="small"
               className={classes.button}
               component={Link}
-              naked
               href={company.url}
+              disableElevation
             >
               Information
             </Button>
@@ -73,6 +74,14 @@ const FeaturedCompany = props => {
 
 FeaturedCompany.propTypes = {
   company: PropTypes.object
+};
+
+FeaturedCompany.defaultProps = {
+  company: {
+    name: 'Company',
+    url: '/',
+    excerpt: 'text'
+  }
 };
 
 export default FeaturedCompany;

@@ -9,6 +9,7 @@ import Chips from '../../components/Chips';
 import Faq from '../../components/Faq';
 import CompanyCard from '../../components/CompanyCard';
 import DetailedExpansionPanel from '../../components/DetailedExpansionPanel';
+import FeaturedCompany from '../../components/FeaturedCompany';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -48,7 +49,7 @@ const Company = () => {
             <CompanyCard />
           </Grid>
           <Grid item xs={12} md={12}>
-            <h1>Company: {company}</h1>
+            <h2>Company: {company}</h2>
             <DetailedExpansionPanel />
             <DetailedExpansionPanel />
           </Grid>
@@ -68,6 +69,11 @@ const Company = () => {
             <Typography variant="h6" gutterBottom>
               More Companies:
             </Typography>
+            <Grid container spacing={3}>
+              {[1, 2].map((item, index) => (
+                <FeaturedCompany key={index} />
+              ))}
+            </Grid>
           </Grid>
           <Sidebar />
         </Grid>

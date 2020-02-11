@@ -23,7 +23,7 @@ const Main = props => {
         {title}
       </Typography>
       <Divider />
-      <Grid container spacing={2} className={classes.mainGrid}>
+      <Grid container spacing={3} className={classes.mainGrid}>
         {data.map((item, index) => (
           <FeaturedCompany key={index} company={item} />
         ))}

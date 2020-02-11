@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Link from '@material-ui/core/Link';
+
 import Copyright from './Copyright';
 
 const useStyles = makeStyles(theme => ({
@@ -17,7 +22,10 @@ const useStyles = makeStyles(theme => ({
   social: {
     backgroundColor: theme.palette.primary.main,
     margin: theme.spacing(4, 0, 0, 0),
-    padding: theme.spacing(2, 0)
+    padding: theme.spacing(2, 0),
+    [theme.breakpoints.down('xs')]: {
+      textAlign: 'center'
+    }
   },
   links: {
     backgroundColor: '#292929',
@@ -40,14 +48,29 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(0),
     color: '#7c7c7d',
     '&:hover': {
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
+      color: '#fff'
     }
   }
 }));
 
 const ListItemLink = props => {
-  return <ListItem button component="a" disableRipple {...props} />;
+  return <ListItem component="a" disableRipple {...props} />;
 };
+
+const social = [
+  { name: 'GitHub', icon: GitHubIcon, url: '#' },
+  { name: 'Twitter', icon: TwitterIcon, url: '#' },
+  { name: 'Facebook', icon: FacebookIcon, url: '#' }
+];
+
+const about = [
+  { name: 'About Us', url: '#' },
+  { name: 'Blog', url: '#' },
+  { name: 'Contact Us', url: '#' },
+  { name: 'Terms of Use', url: '#' },
+  { name: 'FAQs', url: '#' }
+];
 
 export default function Footer(props) {
   const classes = useStyles();
@@ -62,13 +85,27 @@ export default function Footer(props) {
             direction="row"
             justify="space-between"
             alignItems="center"
-            spacing={3}
+            spacing={1}
           >
-            <Grid item xs={12} sm={6} md={6}>
-              <Typography variant="subtitle1">SOCIAL MEDIA</Typography>
+            <Grid item xs={12} sm={6} md={7}>
+              <Typography variant="subtitle1">
+                Get connected with us on social networks!
+              </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
-              <Typography variant="subtitle1">SOCIAL MEDIA</Typography>
+            <Grid
+              container
+              direction="row"
+              justify="space-around"
+              alignItems="center"
+              xs={12}
+              sm={6}
+              md={5}
+            >
+              {social.map((network, index) => (
+                <Link href={network.url} key={index} style={{ color: '#FFF' }}>
+                  <network.icon />
+                </Link>
+              ))}
             </Grid>
           </Grid>
         </Container>
@@ -77,15 +114,18 @@ export default function Footer(props) {
         <Container maxWidth="lg">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} md={3}>
-              <Typography variant="subtitle1">ABOUT</Typography>
+              <Typography variant="subtitle1">INFORMATION</Typography>
               <hr className={classes.hr} />
               <List className={classes.list}>
-                <ListItemLink className={classes.listItem} href="/">
-                  <ListItemText primary="Single-line item" />
-                </ListItemLink>
-                <ListItemLink className={classes.listItem} href="/">
-                  <ListItemText primary="Single-line item" />
-                </ListItemLink>
+                {about.map((link, index) => (
+                  <ListItemLink
+                    className={classes.listItem}
+                    key={index}
+                    href={link.url}
+                  >
+                    <ListItemText primary={link.name} />
+                  </ListItemLink>
+                ))}
               </List>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
@@ -105,7 +145,7 @@ export default function Footer(props) {
               <hr className={classes.hr} />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Typography variant="subtitle1">USEFUL LINKS</Typography>
+              <Typography variant="subtitle1">USEFULL LINKS</Typography>
               <hr className={classes.hr} />
             </Grid>
           </Grid>
