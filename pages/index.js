@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import MainFeaturedPost from '../components/MainFeaturedPost';
 import FeaturedPost from '../components/FeaturedPost';
 import Main from '../components/Main';
@@ -9,7 +10,8 @@ import { inject } from 'mobx-react';
 
 const styles = theme => ({
   mainGrid: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3)
   }
 });
 

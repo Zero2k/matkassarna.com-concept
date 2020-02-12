@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Link from './Link';
 import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({

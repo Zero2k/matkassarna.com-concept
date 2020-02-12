@@ -6,19 +6,6 @@ import MuiLink from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Link from '../components/Link';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MuiLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MuiLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 export default function About() {
   return (
     <Container maxWidth="sm">
@@ -35,7 +22,6 @@ export default function About() {
         >
           Go to the main page
         </Button>
-        <Copyright />
       </Box>
     </Container>
   );

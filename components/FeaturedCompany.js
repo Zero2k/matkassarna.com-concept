@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import SwapVertIcon from '@material-ui/icons/SwapVert';
 import Button from '@material-ui/core/Button';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -44,19 +43,8 @@ const FeaturedCompany = props => {
           </CardActionArea>
           <CardActions>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
-              size="small"
-              className={classes.button}
-              startIcon={<SwapVertIcon />}
-              onClick={() => console.log(company)}
-              disableElevation
-            >
-              Compare
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
               size="small"
               className={classes.button}
               component={Link}
@@ -64,6 +52,16 @@ const FeaturedCompany = props => {
               disableElevation
             >
               Information
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              className={classes.button}
+              onClick={() => console.log(company)}
+              disableElevation
+            >
+              Order Now
             </Button>
           </CardActions>
         </div>

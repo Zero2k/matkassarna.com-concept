@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Link from '@material-ui/core/Link';
+import Link from './Link';
 
 import Copyright from './Copyright';
 
@@ -26,6 +26,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       textAlign: 'center'
     }
+  },
+  socialIcons: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
   links: {
     backgroundColor: '#292929',
@@ -55,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ListItemLink = props => {
-  return <ListItem component="a" disableRipple {...props} />;
+  return <ListItem component={Link} {...props} />;
 };
 
 const social = [
@@ -65,11 +70,25 @@ const social = [
 ];
 
 const about = [
-  { name: 'About Us', url: '#' },
+  { name: 'About Us', url: '/about' },
   { name: 'Blog', url: '#' },
   { name: 'Contact Us', url: '#' },
-  { name: 'Terms of Use', url: '#' },
+  { name: 'Sitemap', url: '#' },
   { name: 'FAQs', url: '#' }
+];
+
+const categories = [
+  { name: 'Technology', url: '#' },
+  { name: 'Mobile', url: '#' },
+  { name: 'Deployment', url: '#' },
+  { name: 'Development', url: '#' },
+  { name: 'Utilities', url: '#' }
+];
+
+const legal = [
+  { name: 'Cookies', url: '#' },
+  { name: 'Privacy Policy', url: '#' },
+  { name: 'Terms of Use', url: '#' }
 ];
 
 export default function Footer(props) {
@@ -80,27 +99,13 @@ export default function Footer(props) {
     <footer className={classes.footer}>
       <div className={classes.social}>
         <Container maxWidth="lg">
-          <Grid
-            container
-            direction="row"
-            justify="space-between"
-            alignItems="center"
-            spacing={1}
-          >
+          <Grid container direction="row" spacing={1}>
             <Grid item xs={12} sm={6} md={7}>
               <Typography variant="subtitle1">
                 Get connected with us on social networks!
               </Typography>
             </Grid>
-            <Grid
-              container
-              direction="row"
-              justify="space-around"
-              alignItems="center"
-              xs={12}
-              sm={6}
-              md={5}
-            >
+            <Grid item xs={12} sm={6} md={5} className={classes.socialIcons}>
               {social.map((network, index) => (
                 <Link href={network.url} key={index} style={{ color: '#FFF' }}>
                   <network.icon />
@@ -114,7 +119,7 @@ export default function Footer(props) {
         <Container maxWidth="lg">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} md={3}>
-              <Typography variant="subtitle1">INFORMATION</Typography>
+              <Typography variant="subtitle1">COMPANY</Typography>
               <hr className={classes.hr} />
               <List className={classes.list}>
                 {about.map((link, index) => (
@@ -143,10 +148,32 @@ export default function Footer(props) {
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="subtitle1">CATEGORIES</Typography>
               <hr className={classes.hr} />
+              <List className={classes.list}>
+                {categories.map((link, index) => (
+                  <ListItemLink
+                    className={classes.listItem}
+                    key={index}
+                    href={link.url}
+                  >
+                    <ListItemText primary={link.name} />
+                  </ListItemLink>
+                ))}
+              </List>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Typography variant="subtitle1">USEFULL LINKS</Typography>
+              <Typography variant="subtitle1">INFORMATION</Typography>
               <hr className={classes.hr} />
+              <List className={classes.list}>
+                {legal.map((link, index) => (
+                  <ListItemLink
+                    className={classes.listItem}
+                    key={index}
+                    href={link.url}
+                  >
+                    <ListItemText primary={link.name} />
+                  </ListItemLink>
+                ))}
+              </List>
             </Grid>
           </Grid>
         </Container>
