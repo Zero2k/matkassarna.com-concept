@@ -32,11 +32,8 @@ const FeaturedCompany = props => {
         <div className={classes.cardDetails}>
           <CardActionArea component="a" href={company.url}>
             <CardContent>
-              <Typography component="h2" variant="h5" gutterBottom>
+              <Typography variant="h5" gutterBottom>
                 {company.name}
-              </Typography>
-              <Typography color="textSecondary" gutterBottom>
-                Text: 4 | Text: 5
               </Typography>
               <Typography variant="subtitle1">{company.excerpt}</Typography>
             </CardContent>
