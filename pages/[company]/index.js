@@ -50,8 +50,8 @@ const Company = () => {
           </Grid>
           <Grid item xs={12} md={12}>
             <h2>Company: {company}</h2>
-            <DetailedExpansionPanel />
-            <DetailedExpansionPanel />
+            <DetailedExpansionPanel index={1} />
+            <DetailedExpansionPanel index={2} />
           </Grid>
           <Grid item xs={12} md={12}>
             <h3>Frequently Asked Questions:</h3>

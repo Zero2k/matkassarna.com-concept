@@ -4,6 +4,10 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
@@ -31,24 +35,44 @@ const useStyles = makeStyles(theme => ({
   details: {
     alignItems: 'center'
   },
-  helper: {
-    [theme.breakpoints.up('md')]: {
-      borderLeft: `1px solid ${theme.palette.divider}`,
-      padding: theme.spacing(1, 2)
-    }
+  column: {
+    flexBasis: '33.33%'
   },
-  link: {
+  helper: {
+    borderLeft: `1px solid ${theme.palette.divider}`,
+    padding: '10px !important'
+  },
+  info: {
     color: theme.palette.primary.main,
-    fontSize: '17px'
+    fontSize: '18px'
+  },
+  toggleButton: {
+    height: '35px',
+    width: '40px'
+  },
+  formControl: {
+    minWidth: 120
   }
 }));
 
-const DetailedExpansionPanel = () => {
+const DetailedExpansionPanel = props => {
   const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(true);
+  const { index } = props;
+
+  const [people, setPeople] = React.useState('2');
+
+  const setNumber = (event, newPeople) => {
+    setPeople(newPeople);
+  };
+
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   return (
     <div className={classes.root}>
-      <ExpansionPanel defaultExpanded>
+      <ExpansionPanel expanded={expanded} onChange={handleChange(index)}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1c-content"
@@ -57,55 +81,94 @@ const DetailedExpansionPanel = () => {
           <div className={classes.column}>
             <Typography className={classes.heading}>Location</Typography>
           </div>
+          {!expanded && (
+            <>
+              <div className={classes.column}>
+                <Typography className={classes.secondaryHeading}>
+                  Select: 4
+                </Typography>
+              </div>
+              <div className={classes.column}>
+                <Typography className={classes.secondaryHeading}>
+                  Number: 3
+                </Typography>
+              </div>
+              <div className={classes.column}>
+                <Typography className={classes.secondaryHeading}>
+                  Price: $599
+                </Typography>
+              </div>
+            </>
+          )}
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={6} lg={3} className={classes.helper}>
+          <Grid
+            container
+            spacing={1}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={12} md>
+              <img width="160px" src="/no-image.jpg"></img>
+            </Grid>
+            <Grid item xs={6} md className={classes.helper}>
               <Typography variant="caption">
-                Select your destination of choice
+                Select
                 <br />
-                <a
-                  href="#secondary-heading-and-columns"
-                  className={classes.link}
+                <ToggleButtonGroup
+                  size="small"
+                  value={people}
+                  exclusive
+                  onChange={setNumber}
                 >
-                  Learn more
-                </a>
+                  <ToggleButton
+                    key={1}
+                    value="2"
+                    className={classes.toggleButton}
+                  >
+                    2
+                  </ToggleButton>
+                  <ToggleButton
+                    key={2}
+                    value="4"
+                    className={classes.toggleButton}
+                  >
+                    4
+                  </ToggleButton>
+                  <ToggleButton
+                    key={3}
+                    value="6"
+                    className={classes.toggleButton}
+                  >
+                    6
+                  </ToggleButton>
+                </ToggleButtonGroup>
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={3} className={classes.helper}>
+            <Grid item xs={6} md className={classes.helper}>
               <Typography variant="caption">
-                Select your destination of choice
+                Number
                 <br />
-                <a
-                  href="#secondary-heading-and-columns"
-                  className={classes.link}
-                >
-                  Learn more
-                </a>
+                <span className={classes.info}>3</span>
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={3} className={classes.helper}>
+            <Grid item xs={6} md className={classes.helper}>
               <Typography variant="caption">
-                Select your destination of choice
-                <br />
-                <a
-                  href="#secondary-heading-and-columns"
-                  className={classes.link}
-                >
-                  Learn more
-                </a>
+                <FormControl className={classes.formControl}>
+                  <Typography variant="caption">Alternative</Typography>
+                  <NativeSelect defaultValue={0}>
+                    <option value={0}>No</option>
+                    <option value={10}>Ten</option>
+                  </NativeSelect>
+                </FormControl>
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={3} className={classes.helper}>
+            <Grid item xs={6} md className={classes.helper}>
               <Typography variant="caption">
                 Price
                 <br />
-                <span
-                  href="#secondary-heading-and-columns"
-                  className={classes.link}
-                >
-                  $599
-                </span>
+                <span className={classes.info}>$599</span>
               </Typography>
             </Grid>
           </Grid>
