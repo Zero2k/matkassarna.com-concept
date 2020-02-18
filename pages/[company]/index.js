@@ -10,6 +10,7 @@ import Faq from '../../components/Faq';
 import CompanyCard from '../../components/CompanyCard';
 import DetailedExpansionPanel from '../../components/DetailedExpansionPanel';
 import FeaturedCompany from '../../components/FeaturedCompany';
+import Sortbar from '../../components/Sortbar';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -49,7 +50,7 @@ const Company = () => {
             <CompanyCard />
           </Grid>
           <Grid item xs={12} md={12}>
-            <h2>Company: {company}</h2>
+            <Sortbar />
             <DetailedExpansionPanel index={1} />
             <DetailedExpansionPanel index={2} />
           </Grid>

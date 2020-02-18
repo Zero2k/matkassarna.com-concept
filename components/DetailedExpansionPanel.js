@@ -40,7 +40,8 @@ const useStyles = makeStyles(theme => ({
   },
   helper: {
     borderLeft: `1px solid ${theme.palette.divider}`,
-    padding: '10px !important'
+    padding: '10px !important',
+    height: '76px'
   },
   info: {
     color: theme.palette.primary.main,
@@ -79,7 +80,9 @@ const DetailedExpansionPanel = props => {
           id="panel1c-header"
         >
           <div className={classes.column}>
-            <Typography className={classes.heading}>Location</Typography>
+            <Typography variant="h3" className={classes.heading}>
+              Location
+            </Typography>
           </div>
           {!expanded && (
             <>
