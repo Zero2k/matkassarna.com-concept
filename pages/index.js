@@ -7,6 +7,9 @@ import FeaturedPost from '../components/FeaturedPost';
 import Main from '../components/Main';
 import Sidebar from '../components/Sidebar';
 import { inject } from 'mobx-react';
+import { Divider } from '@material-ui/core';
+
+import Compare from '../components/Compare';
 
 const styles = theme => ({
   mainGrid: {
@@ -61,6 +64,39 @@ class Index extends React.Component {
           <Grid container spacing={3} className={classes.mainGrid}>
             <Main title="Compare Companies:" data={data} />
             <Sidebar />
+          </Grid>
+          <Divider />
+          <Grid container spacing={3} className={classes.mainGrid}>
+            <Grid item md={12}>
+              <Typography
+                variant="h4"
+                component="h4"
+                align="center"
+                gutterBottom
+              >
+                Compare * products
+              </Typography>
+              <Typography variant="h5" component="h5" align="center">
+                Compare each * provider with one another
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={3}
+          >
+            <Grid item xs={6} md={4}>
+              <Compare url="test/test" />
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <Compare url="test/test" />
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <Compare url="test/test" />
+            </Grid>
           </Grid>
         </main>
       </React.Fragment>

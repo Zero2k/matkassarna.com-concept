@@ -23,6 +23,8 @@ const Company = () => {
   const classes = useStyles();
   const { company } = router.query;
 
+  console.log(company);
+
   return (
     <React.Fragment>
       <main>
