@@ -74,7 +74,7 @@ export default class MyApp extends App {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Header title="Logo.com" sections={sections} />
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" style={{ paddingTop: '15px', paddingBottom: '15px' }}>
               <Component {...pageProps} />
             </Container>
             <Footer

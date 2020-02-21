@@ -43,6 +43,7 @@ const MainFeaturedPost = props => {
     <Paper
       className={classes.mainFeaturedPost}
       style={{ backgroundImage: `url(${post.image})` }}
+      elevation={2}
     >
       {/* Increase the priority of the hero background image */}
       {

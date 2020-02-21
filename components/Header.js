@@ -12,7 +12,9 @@ import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%'
+    width: '100%',
+    borderTop: `3px solid ${theme.palette.primary.main}`,
+    backgroundColor: '#fff'
   },
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`
@@ -50,9 +52,10 @@ const Header = props => {
         <Container>
           <Toolbar disableGutters className={classes.toolbar}>
             <Button
-              style={{ backgroundColor: 'transparent' }}
+              variant="outlined"
               component={Link}
               href="/"
+              disableElevation
             >
               Home
             </Button>
@@ -81,6 +84,7 @@ const Header = props => {
             disableGutters
             className={classes.toolbarSecondary}
           >
+          <strong>Popular: </strong>
             {sections.map(section => (
               <Link
                 color="inherit"

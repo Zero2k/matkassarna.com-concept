@@ -2,17 +2,17 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import MainFeaturedPost from '../components/MainFeaturedPost';
 import FeaturedPost from '../components/FeaturedPost';
 import Main from '../components/Main';
 import Sidebar from '../components/Sidebar';
 import { inject } from 'mobx-react';
-import { Divider } from '@material-ui/core';
 
 import Compare from '../components/Compare';
 
 const styles = theme => ({
-  mainGrid: {
+  gridSpacing: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3)
   }
@@ -61,12 +61,19 @@ class Index extends React.Component {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <Grid container spacing={3} className={classes.mainGrid}>
+          <Grid container spacing={3} className={classes.gridSpacing}>
             <Main title="Compare Companies:" data={data} />
             <Sidebar />
           </Grid>
           <Divider />
-          <Grid container spacing={3} className={classes.mainGrid}>
+          <Grid
+            container
+            spacing={3}
+            direction="row"
+            justify="center"
+            alignItems="center"
+            className={classes.gridSpacing}
+          >
             <Grid item md={12}>
               <Typography
                 variant="h4"

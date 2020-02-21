@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 import CompareChart from '../../components/ComparisonTable';
 import formatString from '../../utils/formatString';
@@ -56,10 +57,12 @@ const Compare = () => {
           </Typography>
         </Grid>
       </Grid>
-      <CompareChart
-        data={data}
-        features={['feature1', 'feature2', 'feature3', 'feature4']}
-      />
+      <Paper elevation={0}>
+        <CompareChart
+          data={data}
+          features={['feature1', 'feature2', 'feature3', 'feature4']}
+        />
+      </Paper>
     </React.Fragment>
   );
 };
