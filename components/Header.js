@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
+import HomeIcon from '@material-ui/icons/Home';
 import Typography from '@material-ui/core/Typography';
 import Link from './Link';
 import Badge from '@material-ui/core/Badge';
@@ -19,9 +20,16 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`
   },
+  menuButton: {
+    marginRight: theme.spacing(1)
+  },
   toolbarTitle: {
+    paddingRight: '20px'
+  },
+  toolbarNavigation: {
     flex: 1
   },
+  tollbarCompare: {},
   toolbarSecondary: {
     justifyContent: 'space-between',
     overflowX: 'auto',
@@ -51,14 +59,6 @@ const Header = props => {
       <div className={classes.root}>
         <Container>
           <Toolbar disableGutters className={classes.toolbar}>
-            <Button
-              variant="outlined"
-              component={Link}
-              href="/"
-              disableElevation
-            >
-              Home
-            </Button>
             <Typography
               component="h2"
               variant="h5"
@@ -69,14 +69,29 @@ const Header = props => {
             >
               {title}
             </Typography>
-            <IconButton
-              aria-label="compare"
-              style={{ backgroundColor: 'transparent' }}
-            >
-              <StyledBadge badgeContent="0" color="primary">
-                <SwapVertIcon />
-              </StyledBadge>
-            </IconButton>
+            <div className={classes.toolbarNavigation}>
+              <Button
+                component={Link}
+                href="/"
+                startIcon={<HomeIcon />}
+                className={classes.menuButton}
+              >
+                Home
+              </Button>
+              <Button component={Link} href="/products">
+                Products
+              </Button>
+            </div>
+            <div className={classes.tollbarCompare}>
+              <IconButton
+                aria-label="compare"
+                style={{ backgroundColor: 'transparent' }}
+              >
+                <StyledBadge badgeContent="0" color="primary">
+                  <SwapVertIcon />
+                </StyledBadge>
+              </IconButton>
+            </div>
           </Toolbar>
           <Toolbar
             component="nav"
@@ -84,7 +99,7 @@ const Header = props => {
             disableGutters
             className={classes.toolbarSecondary}
           >
-          <strong>Popular: </strong>
+            <strong>Popular: </strong>
             {sections.map(section => (
               <Link
                 color="inherit"

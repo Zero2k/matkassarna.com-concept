@@ -21,7 +21,7 @@ const sections = [
   { title: 'Reddit', url: '#' },
   { title: 'Microsoft', url: '#' },
   { title: 'Github', url: '#' },
-  { title: 'View All', url: '/sitemap' }
+  { title: 'View All', url: '/companies' }
 ];
 
 export default class MyApp extends App {

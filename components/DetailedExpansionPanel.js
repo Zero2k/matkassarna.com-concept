@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
     width: 20
   },
   details: {
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: '8px 24px 8px'
   },
   column: {
     flexBasis: '33.33%'
@@ -64,7 +65,9 @@ const DetailedExpansionPanel = props => {
   const [people, setPeople] = React.useState('2');
 
   const setNumber = (event, newPeople) => {
-    setPeople(newPeople);
+    if (newPeople !== null) {
+      setPeople(newPeople);
+    }
   };
 
   const handleChange = panel => (event, isExpanded) => {
@@ -72,8 +75,8 @@ const DetailedExpansionPanel = props => {
   };
 
   return (
-    <div className={classes.root}>
-      <ExpansionPanel expanded={expanded} onChange={handleChange(index)}>
+    <div className={classes.root} key={index}>
+      <ExpansionPanel expanded={expanded} onChange={handleChange(true)}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1c-content"

@@ -73,7 +73,7 @@ const about = [
   { name: 'About Us', url: '/about' },
   { name: 'Blog', url: '#' },
   { name: 'Contact Us', url: '#' },
-  { name: 'Sitemap', url: '#' },
+  { name: 'Sitemap', url: '/sitemap' },
   { name: 'FAQs', url: '#' }
 ];
 

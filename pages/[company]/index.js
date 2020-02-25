@@ -9,6 +9,7 @@ import Chips from '../../components/Chips';
 import Faq from '../../components/Faq';
 import CompanyCard from '../../components/CompanyCard';
 import DetailedExpansionPanel from '../../components/DetailedExpansionPanel';
+import DetailedCard from '../../components/DetailedCard';
 import FeaturedCompany from '../../components/FeaturedCompany';
 import Sortbar from '../../components/Sortbar';
 
@@ -23,12 +24,10 @@ const Company = () => {
   const classes = useStyles();
   const { company } = router.query;
 
-  console.log(company);
-
   return (
     <React.Fragment>
-      <main>
-        <Grid container spacing={3} className={classes.mainGrid}>
+      <main className={classes.mainGrid}>
+        <Grid container spacing={3}>
           <Grid item xs={12} sm={7} md={8}>
             <Typography variant="h1" gutterBottom>
               {company}
@@ -51,11 +50,25 @@ const Company = () => {
           <Grid item xs={12} sm={5} md={4}>
             <CompanyCard />
           </Grid>
-          <Grid item xs={12} md={12}>
+        </Grid>
+
+        <Grid container spacing={3}>
+          <Grid item md={12}>
             <Sortbar />
-            <DetailedExpansionPanel index={1} />
-            <DetailedExpansionPanel index={2} />
           </Grid>
+          <Grid item xs={12} md={12}>
+            {[1, 2, 3].map((item, index) => (
+              <DetailedExpansionPanel index={index} />
+            ))}
+          </Grid>
+          {[1, 2, 3].map((item, index) => (
+            <Grid item xs={12} md={4} key={index}>
+              <DetailedCard index={index} />
+            </Grid>
+          ))}
+        </Grid>
+
+        <Grid container spacing={3}>
           <Grid item xs={12} md={12}>
             <h3>Frequently Asked Questions:</h3>
             <Faq

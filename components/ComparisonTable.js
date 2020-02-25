@@ -43,7 +43,7 @@ const ComparisonTable = props => {
 
   const productComparisonFeature = (feature, data) => {
     return (
-      <TableRow key={feature}>
+      <TableRow key={feature.text}>
         <TableCell><strong>{feature.text}</strong></TableCell>
         {data.map(product => getFeatureForProduct(product, feature))}
       </TableRow>

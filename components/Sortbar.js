@@ -7,11 +7,13 @@ import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Sort from '@material-ui/icons/Sort';
+import ReorderIcon from '@material-ui/icons/Reorder';
+import GridOnSharpIcon from '@material-ui/icons/GridOnSharp';
 
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
-    marginBottom: theme.spacing(2)
+    marginTop: theme.spacing(3)
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -23,6 +25,10 @@ const useStyles = makeStyles(theme => ({
   },
   sectionDesktop: {
     display: 'flex'
+  },
+  btnGutters: {
+    paddingLeft: '5px',
+    paddingRight: '20px'
   }
 }));
 
@@ -57,6 +63,7 @@ const Sortbar = () => {
               aria-haspopup="true"
               onClick={handleMenu}
               color="inherit"
+              style={{ backgroundColor: 'transparent' }}
             >
               <Sort />
             </IconButton>
@@ -75,8 +82,32 @@ const Sortbar = () => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Show as list</MenuItem>
-              <MenuItem onClick={handleClose}>Show as grid</MenuItem>
+              <MenuItem dense classes={{ gutters: classes.btnGutters }}>
+                <IconButton
+                  aria-label="show as list"
+                  color="inherit"
+                  size="small"
+                  style={{ backgroundColor: 'transparent' }}
+                >
+                  <ReorderIcon />
+                </IconButton>
+                <span style={{ paddingLeft: '5px' }}>Show as list</span>
+              </MenuItem>
+              <MenuItem
+                dense
+                onClick={handleClose}
+                classes={{ gutters: classes.btnGutters }}
+              >
+                <IconButton
+                  aria-label="show as list"
+                  color="inherit"
+                  size="small"
+                  style={{ backgroundColor: 'transparent' }}
+                >
+                  <GridOnSharpIcon />
+                </IconButton>
+                <span style={{ paddingLeft: '5px' }}>Show as grid</span>
+              </MenuItem>
             </Menu>
           </div>
         </Toolbar>
