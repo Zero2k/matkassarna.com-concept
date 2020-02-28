@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 const Company = () => {
   const router = useRouter();
   const classes = useStyles();
+  const [grid, setGrid] = React.useState(false);
   const { company } = router.query;
 
   return (
@@ -53,19 +54,22 @@ const Company = () => {
         </Grid>
 
         <Grid container spacing={3}>
-          <Grid item md={12}>
-            <Sortbar />
+          <Grid item sm={12}>
+            <Sortbar setGrid={setGrid} />
           </Grid>
-          <Grid item xs={12} md={12}>
-            {[1, 2, 3].map((item, index) => (
-              <DetailedExpansionPanel index={index} />
-            ))}
-          </Grid>
-          {[1, 2, 3].map((item, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <DetailedCard index={index} />
+          {grid ? (
+            [1, 2, 3].map((item, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <DetailedCard />
+              </Grid>
+            ))
+          ) : (
+            <Grid item xs={12} md={12}>
+              {[1, 2, 3].map((item, index) => (
+                <DetailedExpansionPanel key={index} />
+              ))}
             </Grid>
-          ))}
+          )}
         </Grid>
 
         <Grid container spacing={3}>

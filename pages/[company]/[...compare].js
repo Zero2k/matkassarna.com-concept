@@ -60,7 +60,11 @@ const Compare = () => {
       <Paper elevation={0}>
         <CompareChart
           data={data}
-          features={[{key:'feature1', text: 'Pricing'}, {key:'feature2', text: 'Website'}, {key:'feature3', text: 'Support'}]}
+          features={[
+            { key: 'feature1', text: 'Pricing' },
+            { key: 'feature2', text: 'Website' },
+            { key: 'feature3', text: 'Support' }
+          ]}
         />
       </Paper>
     </React.Fragment>

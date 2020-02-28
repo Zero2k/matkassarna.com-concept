@@ -60,7 +60,6 @@ const useStyles = makeStyles(theme => ({
 const DetailedExpansionPanel = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(true);
-  const { index } = props;
 
   const [people, setPeople] = React.useState('2');
 
@@ -75,7 +74,7 @@ const DetailedExpansionPanel = props => {
   };
 
   return (
-    <div className={classes.root} key={index}>
+    <div className={classes.root}>
       <ExpansionPanel expanded={expanded} onChange={handleChange(true)}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}

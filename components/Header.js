@@ -99,7 +99,6 @@ const Header = props => {
             disableGutters
             className={classes.toolbarSecondary}
           >
-            <strong>Popular: </strong>
             {sections.map(section => (
               <Link
                 color="inherit"

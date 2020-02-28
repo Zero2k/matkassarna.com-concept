@@ -32,10 +32,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Sortbar = () => {
+const Sortbar = props => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const { setGrid } = props;
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -82,7 +83,11 @@ const Sortbar = () => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem dense classes={{ gutters: classes.btnGutters }}>
+              <MenuItem
+                dense
+                classes={{ gutters: classes.btnGutters }}
+                onClick={() => setGrid(false)}
+              >
                 <IconButton
                   aria-label="show as list"
                   color="inherit"
@@ -97,6 +102,7 @@ const Sortbar = () => {
                 dense
                 onClick={handleClose}
                 classes={{ gutters: classes.btnGutters }}
+                onClick={() => setGrid(true)}
               >
                 <IconButton
                   aria-label="show as list"
