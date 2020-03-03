@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(2)
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15)
+    fontSize: theme.typography.pxToRem(17)
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -60,13 +60,40 @@ const useStyles = makeStyles(theme => ({
 const DetailedExpansionPanel = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(true);
+  const [value, setValue] = React.useState(props.product.options[0].value1);
+  const [productState, setProductState] = React.useState({
+    ...props.product,
+    options: props.product.options[0],
+    selectedAltenative: props.product.options[0].alternatives[0]
+  });
 
-  const [people, setPeople] = React.useState('2');
+  const setNumber = (event, value) => {
+    if (value !== null) {
+      setValue(value);
 
-  const setNumber = (event, newPeople) => {
-    if (newPeople !== null) {
-      setPeople(newPeople);
+      const selectedOption = props.product.options.filter(
+        item => item.value1 == value
+      )[0];
+
+      setProductState({
+        ...productState,
+        options: selectedOption,
+        selectedAltenative: selectedOption.alternatives[0]
+      });
     }
+  };
+
+  const setAlternative = event => {
+    const { value } = event.target;
+
+    const selectedAlternative = productState.options.alternatives.filter(
+      item => item.id == value
+    )[0];
+
+    setProductState({
+      ...productState,
+      selectedAltenative: selectedAlternative
+    });
   };
 
   const handleChange = panel => (event, isExpanded) => {
@@ -83,24 +110,24 @@ const DetailedExpansionPanel = props => {
         >
           <div className={classes.column}>
             <Typography variant="h3" className={classes.heading}>
-              Location
+              {productState.name}
             </Typography>
           </div>
           {!expanded && (
             <>
               <div className={classes.column}>
                 <Typography className={classes.secondaryHeading}>
-                  Select: 4
+                  Select: {value}
                 </Typography>
               </div>
               <div className={classes.column}>
                 <Typography className={classes.secondaryHeading}>
-                  Number: 3
+                  Number: {productState.options.value2}
                 </Typography>
               </div>
               <div className={classes.column}>
                 <Typography className={classes.secondaryHeading}>
-                  Price: $599
+                  Price: ${productState.selectedAltenative.price}
                 </Typography>
               </div>
             </>
@@ -115,7 +142,7 @@ const DetailedExpansionPanel = props => {
             alignItems="center"
           >
             <Grid item xs={12} md>
-              <img width="160px" src="/no-image.jpg"></img>
+              <img width="100%" src="/no-image.jpg"></img>
             </Grid>
             <Grid item xs={6} md className={classes.helper}>
               <Typography variant="caption">
@@ -123,31 +150,19 @@ const DetailedExpansionPanel = props => {
                 <br />
                 <ToggleButtonGroup
                   size="small"
-                  value={people}
+                  value={value}
                   exclusive
                   onChange={setNumber}
                 >
-                  <ToggleButton
-                    key={1}
-                    value="2"
-                    className={classes.toggleButton}
-                  >
-                    2
-                  </ToggleButton>
-                  <ToggleButton
-                    key={2}
-                    value="4"
-                    className={classes.toggleButton}
-                  >
-                    4
-                  </ToggleButton>
-                  <ToggleButton
-                    key={3}
-                    value="6"
-                    className={classes.toggleButton}
-                  >
-                    6
-                  </ToggleButton>
+                  {props.product.options.map(item => (
+                    <ToggleButton
+                      key={item.id}
+                      value={item.value1}
+                      className={classes.toggleButton}
+                    >
+                      {item.value1}
+                    </ToggleButton>
+                  ))}
                 </ToggleButtonGroup>
               </Typography>
             </Grid>
@@ -155,16 +170,29 @@ const DetailedExpansionPanel = props => {
               <Typography variant="caption">
                 Number
                 <br />
-                <span className={classes.info}>3</span>
+                <span className={classes.info}>
+                  {productState.options.value2}
+                </span>
               </Typography>
             </Grid>
             <Grid item xs={6} md className={classes.helper}>
               <Typography variant="caption">
                 <FormControl className={classes.formControl}>
                   <Typography variant="caption">Alternative</Typography>
-                  <NativeSelect defaultValue={0}>
-                    <option value={0}>No</option>
-                    <option value={10}>Ten</option>
+                  <NativeSelect
+                    name="alternative"
+                    value={productState.selectedAltenative.id}
+                    onChange={setAlternative}
+                  >
+                    {productState.options.alternatives.map(item =>
+                      item.name === '' ? (
+                        ''
+                      ) : (
+                        <option value={item.id} key={item.id}>
+                          {item.name}
+                        </option>
+                      )
+                    )}
                   </NativeSelect>
                 </FormControl>
               </Typography>
@@ -173,7 +201,9 @@ const DetailedExpansionPanel = props => {
               <Typography variant="caption">
                 Price
                 <br />
-                <span className={classes.info}>$599</span>
+                <span className={classes.info}>
+                  ${productState.selectedAltenative.price}
+                </span>
               </Typography>
             </Grid>
           </Grid>

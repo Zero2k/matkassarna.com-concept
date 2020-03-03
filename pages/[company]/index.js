@@ -19,6 +19,59 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const products = [
+  {
+    id: 1,
+    name: 'Macbook Pro',
+    options: [
+      {
+        id: 1,
+        value1: 2,
+        value2: 4,
+        alternatives: [{ id: 1, name: 'No alternative', price: 440 }]
+      },
+      {
+        id: 2,
+        value1: 4,
+        value2: 3,
+        alternatives: [
+          { id: 1, name: 'Select...', price: 510 },
+          { id: 2, name: 'White', price: 700 },
+          { id: 3, name: 'Silver', price: 720 }
+        ]
+      },
+      {
+        id: 3,
+        value1: 6,
+        value2: 4,
+        alternatives: [
+          { id: 1, name: 'Select...', price: 874 },
+          { id: 2, name: 'White', price: 900 },
+          { id: 3, name: 'Silver', price: 920 }
+        ]
+      }
+    ]
+  },
+  {
+    id: 1,
+    name: 'iMac',
+    options: [
+      {
+        id: 1,
+        value1: 4,
+        value2: 3,
+        alternatives: [{ id: 1, name: 'No alternative', price: 440 }]
+      },
+      {
+        id: 2,
+        value1: 6,
+        value2: 4,
+        alternatives: [{ id: 1, name: 'No alternative', price: 440 }]
+      }
+    ]
+  }
+];
+
 const Company = () => {
   const router = useRouter();
   const classes = useStyles();
@@ -54,7 +107,7 @@ const Company = () => {
         </Grid>
 
         <Grid container spacing={3}>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Sortbar setGrid={setGrid} />
           </Grid>
           {grid ? (
@@ -65,8 +118,8 @@ const Company = () => {
             ))
           ) : (
             <Grid item xs={12} md={12}>
-              {[1, 2, 3].map((item, index) => (
-                <DetailedExpansionPanel key={index} />
+              {products.map((product, index) => (
+                <DetailedExpansionPanel key={index} product={product} />
               ))}
             </Grid>
           )}

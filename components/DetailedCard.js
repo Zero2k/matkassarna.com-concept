@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
   details: {
     alignItems: 'center'
   },
+  heading: {
+    fontSize: theme.typography.pxToRem(17)
+  },
   helper: {
     padding: '10px !important',
     height: '76px'
@@ -73,6 +76,11 @@ const DetailedCard = props => {
       />
       <CardContent>
         <Grid container spacing={2} direction="row" alignItems="center">
+          <Grid item xs={12}>
+            <Typography variant="h3" className={classes.heading}>
+              Title
+            </Typography>
+          </Grid>
           <Grid item xs={6} md={6} className={classes.helper}>
             <Typography variant="caption">
               Select
