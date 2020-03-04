@@ -17,7 +17,7 @@ const ComparisonTable = props => {
       return (
         <TableHead>
           <TableRow>
-            <TableCell>Company</TableCell>
+            <TableCell />
             {data.map((product, i) => productHeaderDetails(product, i))}
           </TableRow>
         </TableHead>
@@ -26,7 +26,11 @@ const ComparisonTable = props => {
   };
 
   const productHeaderDetails = (product, i) => {
-    return <TableCell key={i}>{product.name}</TableCell>;
+    return (
+      <TableCell key={i}>
+        <img src={product.image} />
+      </TableCell>
+    );
   };
 
   const generateBody = data => {
@@ -44,7 +48,9 @@ const ComparisonTable = props => {
   const productComparisonFeature = (feature, data) => {
     return (
       <TableRow key={feature.text}>
-        <TableCell><strong>{feature.text}</strong></TableCell>
+        <TableCell>
+          <strong>{feature.text}</strong>
+        </TableCell>
         {data.map(product => getFeatureForProduct(product, feature))}
       </TableRow>
     );

@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   },
   info: {
     color: theme.palette.primary.main,
-    fontSize: '18px'
+    fontSize: theme.typography.pxToRem(18)
   },
   toggleButton: {
     height: '35px',

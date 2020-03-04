@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     display: 'block',
-    fontSize: '20px',
+    fontSize: theme.typography.pxToRem(20),
     fontWeight: 500
   },
   sectionDesktop: {
