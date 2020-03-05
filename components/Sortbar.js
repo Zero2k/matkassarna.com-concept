@@ -86,7 +86,9 @@ const Sortbar = props => {
               <MenuItem
                 dense
                 classes={{ gutters: classes.btnGutters }}
-                onClick={() => setGrid(false)}
+                onClick={() => {
+                  setGrid(false), handleClose();
+                }}
               >
                 <IconButton
                   aria-label="show as list"
@@ -100,9 +102,10 @@ const Sortbar = props => {
               </MenuItem>
               <MenuItem
                 dense
-                onClick={handleClose}
                 classes={{ gutters: classes.btnGutters }}
-                onClick={() => setGrid(true)}
+                onClick={() => {
+                  setGrid(true), handleClose();
+                }}
               >
                 <IconButton
                   aria-label="show as list"

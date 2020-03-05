@@ -23,7 +23,6 @@ let theme = createMuiTheme({
 
 theme.typography.h1 = {
   fontSize: '1.5rem',
-  textTransform: 'capitalize',
   fontWeight: 500,
   '@media (min-width:600px)': {
     fontSize: '1.8rem',

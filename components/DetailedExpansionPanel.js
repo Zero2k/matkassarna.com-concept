@@ -227,4 +227,19 @@ const DetailedExpansionPanel = props => {
   );
 };
 
+DetailedExpansionPanel.defaultProps = {
+  product: {
+    id: 1,
+    name: 'Missing value',
+    options: [
+      {
+        id: 1,
+        value1: 0,
+        value2: 'Missing value',
+        alternatives: [{ id: 1, name: 'Missing value', price: 0 }]
+      }
+    ]
+  }
+};
+
 export default DetailedExpansionPanel;

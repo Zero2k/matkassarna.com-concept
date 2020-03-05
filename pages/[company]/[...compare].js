@@ -32,6 +32,13 @@ var data = [
     image: 'https://okrsoftware.com/img/logos/perdoo.png',
     feature2: 'feature 2 of product 2',
     feature3: 'feature 3 of product 2'
+  },
+  {
+    id: '3',
+    name: 'Name 3',
+    image: 'https://okrsoftware.com/img/logos/weekdone.png',
+    feature2: 'feature 2 of product 2',
+    feature3: 'feature 3 of product 2'
   }
 ];
 
@@ -47,10 +54,7 @@ const Compare = () => {
       <Grid container spacing={3} className={classes.mainGrid}>
         <Grid item md={12}>
           <Typography variant="h1" component="h1" align="center" gutterBottom>
-            Compare {company}
-            {compare.length > 1
-              ? `, ${formatString(compare)}`
-              : ` and ${compare[0]}`}
+            Compare {formatString(company, compare)}
           </Typography>
           <Typography variant="h5" component="h2" align="center">
             Based on available data from their respective websites.

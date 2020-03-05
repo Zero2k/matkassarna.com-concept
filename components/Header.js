@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import HomeIcon from '@material-ui/icons/Home';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import Link from './Link';
 import Badge from '@material-ui/core/Badge';
@@ -78,7 +79,11 @@ const Header = props => {
               >
                 Home
               </Button>
-              <Button component={Link} href="/products">
+              <Button
+                component={Link}
+                href="/products"
+                startIcon={<ShoppingBasketIcon />}
+              >
                 Products
               </Button>
             </div>

@@ -62,7 +62,7 @@ const ComparisonTable = props => {
 
   return (
     <TableContainer>
-      <Table stickyHeader>
+      <Table>
         {generateHeader(data)}
         {generateBody(data)}
       </Table>
