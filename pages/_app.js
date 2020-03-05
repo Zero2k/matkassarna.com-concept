@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 import { Provider } from 'mobx-react';
-import { initializeStores } from '../stores';
+import { createStore } from '../stores';
 
 const sections = [
   { title: 'Apple', url: '/apple' },
@@ -26,28 +26,23 @@ const sections = [
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    //
-    // Use getInitialProps as a step in the lifecycle when
-    // we can initialize our store
-    //
-    const isServer = typeof window === 'undefined';
-    //
-    // Check whether the page being rendered by the App has a
-    // static getInitialProps method and if so call it
-    //
     let pageProps = {};
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
+
     return {
-      isServer,
       pageProps
     };
   }
 
   constructor(props) {
     super(props);
-    this.stores = initializeStores(props.isServer);
+    this.store = createStore();
+
+    if (typeof window !== 'undefined') {
+      window.Mobx = this.store;
+    }
   }
 
   componentDidMount() {
@@ -70,7 +65,7 @@ export default class MyApp extends App {
             content="minimum-scale=1, initial-scale=1, width=device-width"
           />
         </Head>
-        <Provider {...this.stores}>
+        <Provider {...this.store}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Header title="Logo.com" sections={sections} />

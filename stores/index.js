@@ -1,5 +1,11 @@
+import { createContext, useContext } from 'react';
+import { useStaticRendering } from 'mobx-react-lite';
 import { ProductsStore } from './ProductsStore';
 import { ProductModel } from '../models/ProductModel';
+
+const isServer = typeof window === 'undefined';
+
+useStaticRendering(isServer);
 
 const productsStore = ProductsStore.create({
   data: [
@@ -17,20 +23,25 @@ const productsStore = ProductsStore.create({
       excerpt:
         'Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington.'
     })
-  ]
+  ],
+  compare: []
 });
 
 const stores = {
   productsStore
 };
 
-export const initializeStores = isServer => {
+export const createStore = () => {
   if (isServer) {
     stores;
   }
-  if (stores === null) {
+  if (stores !== null) {
     stores;
   }
 
   return stores;
 };
+
+export const StoreContext = createContext(stores);
+export const StoreProvider = StoreContext.Provider;
+export const useStore = () => useContext(StoreContext);

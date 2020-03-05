@@ -14,6 +14,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Link from './Link';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -69,11 +70,7 @@ const DetailedCard = props => {
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image="/no-image.jpg"
-        title="Contemplative Reptile"
-      />
+      <CardMedia className={classes.media} image="/no-image.jpg" title="Text" />
       <CardContent>
         <Grid container spacing={2} direction="row" alignItems="center">
           <Grid item xs={12}>

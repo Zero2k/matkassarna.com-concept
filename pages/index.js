@@ -1,22 +1,22 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import { useStore } from '../stores';
+
 import MainFeaturedPost from '../components/MainFeaturedPost';
 import FeaturedPost from '../components/FeaturedPost';
 import Main from '../components/Main';
 import Sidebar from '../components/Sidebar';
-import { inject } from 'mobx-react';
-
 import Compare from '../components/Compare';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   gridSpacing: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3)
   }
-});
+}));
 
 const mainFeaturedPost = {
   title: 'Title of a longer featured blog post',
@@ -46,69 +46,62 @@ const featuredPosts = [
   }
 ];
 
-@inject('productsStore')
-class Index extends React.Component {
-  render() {
-    const { classes } = this.props;
-    const { data } = this.props.productsStore;
+const Index = () => {
+  const classes = useStyles();
+  const store = useStore();
+  const { data } = store.productsStore;
 
-    return (
-      <React.Fragment>
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={3}>
-            {featuredPosts.map(post => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
+  return (
+    <React.Fragment>
+      <main>
+        <MainFeaturedPost post={mainFeaturedPost} />
+        <Grid container spacing={3}>
+          {featuredPosts.map(post => (
+            <FeaturedPost key={post.title} post={post} />
+          ))}
+        </Grid>
+        <Grid container spacing={3} className={classes.gridSpacing}>
+          <Main title="Compare Companies:" data={data} />
+          <Sidebar />
+        </Grid>
+        <Divider />
+        <Grid
+          container
+          spacing={3}
+          direction="row"
+          justify="center"
+          alignItems="center"
+          className={classes.gridSpacing}
+        >
+          <Grid item md={12}>
+            <Typography variant="h4" component="h4" align="center" gutterBottom>
+              Compare * products
+            </Typography>
+            <Typography variant="h5" component="h5" align="center">
+              Compare each * provider with one another
+            </Typography>
           </Grid>
-          <Grid container spacing={3} className={classes.gridSpacing}>
-            <Main title="Compare Companies:" data={data} />
-            <Sidebar />
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={3}
+        >
+          <Grid item xs={6} md={4}>
+            <Compare url="test/test" />
           </Grid>
-          <Divider />
-          <Grid
-            container
-            spacing={3}
-            direction="row"
-            justify="center"
-            alignItems="center"
-            className={classes.gridSpacing}
-          >
-            <Grid item md={12}>
-              <Typography
-                variant="h4"
-                component="h4"
-                align="center"
-                gutterBottom
-              >
-                Compare * products
-              </Typography>
-              <Typography variant="h5" component="h5" align="center">
-                Compare each * provider with one another
-              </Typography>
-            </Grid>
+          <Grid item xs={6} md={4}>
+            <Compare url="test/test" />
           </Grid>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            spacing={3}
-          >
-            <Grid item xs={6} md={4}>
-              <Compare url="test/test" />
-            </Grid>
-            <Grid item xs={6} md={4}>
-              <Compare url="test/test" />
-            </Grid>
-            <Grid item xs={6} md={4}>
-              <Compare url="test/test" />
-            </Grid>
+          <Grid item xs={6} md={4}>
+            <Compare url="test/test" />
           </Grid>
-        </main>
-      </React.Fragment>
-    );
-  }
-}
+        </Grid>
+      </main>
+    </React.Fragment>
+  );
+};
 
-export default withStyles(styles)(Index);
+export default Index;
