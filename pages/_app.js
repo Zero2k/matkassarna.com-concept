@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import theme from '../components/theme';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -71,7 +72,7 @@ export default class MyApp extends App {
             <Header title="Logo.com" sections={sections} />
             <Container
               maxWidth="lg"
-              style={{ paddingTop: '15px', paddingBottom: '15px' }}
+              style={{ marginTop: '15px', paddingBottom: '15px' }}
             >
               <Component {...pageProps} />
             </Container>

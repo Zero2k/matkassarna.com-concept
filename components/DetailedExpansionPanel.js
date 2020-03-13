@@ -64,7 +64,7 @@ const DetailedExpansionPanel = props => {
   const [productState, setProductState] = React.useState({
     ...props.product,
     options: props.product.options[0],
-    selectedAltenative: props.product.options[0].alternatives[0]
+    selectedAlternative: props.product.options[0].alternatives[0]
   });
 
   const setNumber = (event, value) => {
@@ -78,7 +78,7 @@ const DetailedExpansionPanel = props => {
       setProductState({
         ...productState,
         options: selectedOption,
-        selectedAltenative: selectedOption.alternatives[0]
+        selectedAlternative: selectedOption.alternatives[0]
       });
     }
   };
@@ -92,7 +92,7 @@ const DetailedExpansionPanel = props => {
 
     setProductState({
       ...productState,
-      selectedAltenative: selectedAlternative
+      selectedAlternative: selectedAlternative
     });
   };
 
@@ -127,7 +127,7 @@ const DetailedExpansionPanel = props => {
               </div>
               <div className={classes.column}>
                 <Typography className={classes.secondaryHeading}>
-                  Price: ${productState.selectedAltenative.price}
+                  Price: ${productState.selectedAlternative.price}
                 </Typography>
               </div>
             </>
@@ -181,7 +181,7 @@ const DetailedExpansionPanel = props => {
                   <Typography variant="caption">Alternative</Typography>
                   <NativeSelect
                     name="alternative"
-                    value={productState.selectedAltenative.id}
+                    value={productState.selectedAlternative.id}
                     onChange={setAlternative}
                   >
                     {productState.options.alternatives.map(item =>
@@ -202,7 +202,7 @@ const DetailedExpansionPanel = props => {
                 Price
                 <br />
                 <span className={classes.info}>
-                  ${productState.selectedAltenative.price}
+                  ${productState.selectedAlternative.price}
                 </span>
               </Typography>
             </Grid>
@@ -210,7 +210,20 @@ const DetailedExpansionPanel = props => {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button size="medium" color="primary" startIcon={<SwapVertIcon />}>
+          <Button
+            size="medium"
+            color="primary"
+            startIcon={<SwapVertIcon />}
+            onClick={() => {
+              props.compare({
+                id: productState.id,
+                name: productState.name,
+                options: productState.options.toJSON(),
+                selectedAlternative: productState.selectedAlternative.toJSON()
+              });
+              props.isCompared(productState);
+            }}
+          >
             Compare
           </Button>
           <Button

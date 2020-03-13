@@ -13,11 +13,18 @@ export const OptionsModel = types.model('OptionsModel', {
   alternatives: types.array(AlternativesModel)
 });
 
-export const ProductModel = types
-  .model('ProductModel', {
+export const SelectedModel = types.model('SelectedModel', {
+  id: types.identifier,
+  name: types.string,
+  price: types.number
+});
+
+export const CompareModel = types
+  .model('CompareModel', {
     id: types.identifier,
     name: types.string,
-    options: types.array(OptionsModel)
+    options: OptionsModel,
+    selectedAlternative: types.maybe(SelectedModel)
   })
   .views(self => ({}))
   .actions(self => ({}));

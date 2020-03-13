@@ -12,6 +12,7 @@ import DetailedExpansionPanel from '../../components/DetailedExpansionPanel';
 import DetailedCard from '../../components/DetailedCard';
 import FeaturedCompany from '../../components/FeaturedCompany';
 import Sortbar from '../../components/Sortbar';
+import { useStore } from '../../stores';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -19,64 +20,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const products = [
-  {
-    id: 1,
-    name: 'Macbook Pro',
-    options: [
-      {
-        id: 1,
-        value1: 2,
-        value2: 4,
-        alternatives: [{ id: 1, name: 'No alternative', price: 440 }]
-      },
-      {
-        id: 2,
-        value1: 4,
-        value2: 3,
-        alternatives: [
-          { id: 1, name: 'Select...', price: 510 },
-          { id: 2, name: 'White', price: 700 },
-          { id: 3, name: 'Silver', price: 720 }
-        ]
-      },
-      {
-        id: 3,
-        value1: 6,
-        value2: 4,
-        alternatives: [
-          { id: 1, name: 'Select...', price: 874 },
-          { id: 2, name: 'White', price: 900 },
-          { id: 3, name: 'Silver', price: 920 }
-        ]
-      }
-    ]
-  },
-  {
-    id: 1,
-    name: 'iMac',
-    options: [
-      {
-        id: 1,
-        value1: 4,
-        value2: 3,
-        alternatives: [{ id: 1, name: 'No alternative', price: 440 }]
-      },
-      {
-        id: 2,
-        value1: 6,
-        value2: 4,
-        alternatives: [{ id: 1, name: 'No alternative', price: 440 }]
-      }
-    ]
-  }
-];
-
 const Company = () => {
   const router = useRouter();
   const classes = useStyles();
   const [grid, setGrid] = React.useState(false);
   const { company } = router.query;
+
+  const store = useStore();
+  const { data, compareProduct, isCompared } = store.productStore;
+
+  const selectToCompare = product => {
+    compareProduct(product);
+  };
 
   return (
     <React.Fragment>
@@ -118,8 +73,13 @@ const Company = () => {
             ))
           ) : (
             <Grid item xs={12} md={12}>
-              {products.map((product, index) => (
-                <DetailedExpansionPanel key={index} product={product} />
+              {data.map((product, index) => (
+                <DetailedExpansionPanel
+                  key={index}
+                  product={product}
+                  compare={selectToCompare}
+                  isCompared={isCompared}
+                />
               ))}
             </Grid>
           )}

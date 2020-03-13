@@ -49,7 +49,7 @@ const featuredPosts = [
 const Index = () => {
   const classes = useStyles();
   const store = useStore();
-  const { data } = store.productsStore;
+  const { data } = store.companyStore;
 
   return (
     <React.Fragment>
