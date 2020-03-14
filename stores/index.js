@@ -35,33 +35,33 @@ const companyStore = CompanyStore.create({
 const productStore = ProductsStore.create({
   data: [
     ProductModel.create({
-      id: '1',
+      id: '123',
       name: 'Macbook Pro',
       options: [
         OptionsModel.create({
-          id: '1',
+          id: '134',
           value1: 2,
           value2: 4,
           alternatives: [
             AlternativesModel.create({
-              id: '1',
+              id: '100',
               name: 'No alternative',
               price: 440
             })
           ]
         }),
         OptionsModel.create({
-          id: '2',
+          id: '234',
           value1: 3,
           value2: 4,
           alternatives: [
             AlternativesModel.create({
-              id: '1',
+              id: '101',
               name: 'No alternative',
               price: 440
             }),
-            AlternativesModel.create({ id: '2', name: 'White', price: 700 }),
-            AlternativesModel.create({ id: '3', name: 'Black', price: 850 })
+            AlternativesModel.create({ id: '202', name: 'White', price: 700 }),
+            AlternativesModel.create({ id: '303', name: 'Black', price: 850 })
           ]
         })
       ]

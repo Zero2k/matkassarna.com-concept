@@ -1,4 +1,5 @@
 import React from 'react';
+import { useObserver } from 'mobx-react-lite';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -12,8 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
+import ClearIcon from '@material-ui/icons/Clear';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import { useStore } from '../stores';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,6 +62,7 @@ const useStyles = makeStyles(theme => ({
 
 const DetailedExpansionPanel = props => {
   const classes = useStyles();
+  const store = useStore();
   const [expanded, setExpanded] = React.useState(true);
   const [value, setValue] = React.useState(props.product.options[0].value1);
   const [productState, setProductState] = React.useState({
@@ -66,6 +70,7 @@ const DetailedExpansionPanel = props => {
     options: props.product.options[0],
     selectedAlternative: props.product.options[0].alternatives[0]
   });
+  const { compareProduct, isCompared, stopComparing } = store.productStore;
 
   const setNumber = (event, value) => {
     if (value !== null) {
@@ -100,7 +105,7 @@ const DetailedExpansionPanel = props => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  return (
+  return useObserver(() => (
     <div className={classes.root}>
       <ExpansionPanel expanded={expanded} onChange={handleChange(true)}>
         <ExpansionPanelSummary
@@ -210,22 +215,32 @@ const DetailedExpansionPanel = props => {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button
-            size="medium"
-            color="primary"
-            startIcon={<SwapVertIcon />}
-            onClick={() => {
-              props.compare({
-                id: productState.id,
-                name: productState.name,
-                options: productState.options.toJSON(),
-                selectedAlternative: productState.selectedAlternative.toJSON()
-              });
-              props.isCompared(productState);
-            }}
-          >
-            Compare
-          </Button>
+          {!isCompared(productState) ? (
+            <Button
+              size="medium"
+              color="primary"
+              startIcon={<SwapVertIcon />}
+              onClick={() => {
+                compareProduct({
+                  id: productState.id,
+                  name: productState.name,
+                  options: productState.options.toJSON(),
+                  selectedAlternative: productState.selectedAlternative.toJSON()
+                });
+              }}
+            >
+              Compare
+            </Button>
+          ) : (
+            <Button
+              size="medium"
+              color="primary"
+              startIcon={<ClearIcon />}
+              onClick={() => stopComparing(productState)}
+            >
+              Remove
+            </Button>
+          )}
           <Button
             size="medium"
             color="secondary"
@@ -237,7 +252,7 @@ const DetailedExpansionPanel = props => {
         </ExpansionPanelActions>
       </ExpansionPanel>
     </div>
-  );
+  ));
 };
 
 DetailedExpansionPanel.defaultProps = {

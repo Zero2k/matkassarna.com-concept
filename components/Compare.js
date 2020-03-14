@@ -20,7 +20,7 @@ const Compare = props => {
   console.log(url);
 
   return (
-    <Link href={url}>
+    <Link href="/[company]/[...compare]" as={url}>
       <div className={classes.root}>
         <img src="https://okrsoftware.com/img/logos/weekdone.png" width="40%" />
         <CompareArrowsIcon />

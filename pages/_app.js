@@ -21,8 +21,7 @@ const sections = [
   { title: 'Twitch', url: '#' },
   { title: 'Reddit', url: '#' },
   { title: 'Microsoft', url: '#' },
-  { title: 'Github', url: '#' },
-  { title: 'View All', url: '/companies' }
+  { title: 'Github', url: '#' }
 ];
 
 export default class MyApp extends App {

@@ -90,13 +90,13 @@ const Index = () => {
           spacing={3}
         >
           <Grid item xs={6} md={4}>
-            <Compare url="test/test" />
+            <Compare url="/test/test" />
           </Grid>
           <Grid item xs={6} md={4}>
-            <Compare url="test/test" />
+            <Compare url="/test/test" />
           </Grid>
           <Grid item xs={6} md={4}>
-            <Compare url="test/test" />
+            <Compare url="/test/test" />
           </Grid>
         </Grid>
       </main>

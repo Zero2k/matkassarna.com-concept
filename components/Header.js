@@ -1,4 +1,5 @@
 import React from 'react';
+import { useObserver } from 'mobx-react-lite';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -11,6 +12,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import Link from './Link';
 import Badge from '@material-ui/core/Badge';
+import { useStore } from '../stores';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,9 +55,11 @@ const StyledBadge = withStyles(theme => ({
 
 const Header = props => {
   const classes = useStyles();
+  const store = useStore();
   const { sections, title } = props;
+  const { compare } = store.productStore;
 
-  return (
+  return useObserver(() => (
     <React.Fragment>
       <div className={classes.root}>
         <Container>
@@ -92,7 +96,7 @@ const Header = props => {
                 aria-label="compare"
                 style={{ backgroundColor: 'transparent' }}
               >
-                <StyledBadge badgeContent="0" color="primary">
+                <StyledBadge badgeContent={compare.length} color="primary">
                   <SwapVertIcon />
                 </StyledBadge>
               </IconButton>
@@ -110,18 +114,28 @@ const Header = props => {
                 noWrap
                 key={section.title}
                 variant="body2"
-                href={section.url}
+                href="/[company]"
                 as={section.url}
                 className={classes.toolbarLink}
               >
                 {section.title}
               </Link>
             ))}
+            <Link
+              color="inherit"
+              noWrap
+              variant="body2"
+              href="/companies"
+              as="/companies"
+              className={classes.toolbarLink}
+            >
+              View All
+            </Link>
           </Toolbar>
         </Container>
       </div>
     </React.Fragment>
-  );
+  ));
 };
 
 Header.propTypes = {

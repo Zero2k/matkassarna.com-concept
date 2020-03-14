@@ -45,7 +45,8 @@ const FeaturedCompany = props => {
               size="small"
               className={classes.button}
               component={Link}
-              href={company.url}
+              href="/[company]"
+              as={company.url}
               disableElevation
             >
               Information

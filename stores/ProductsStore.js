@@ -21,5 +21,10 @@ export const ProductsStore = types
         self.compare.push(product);
       }
       console.log('STORE', self.compare.toJSON());
+    },
+    stopComparing(product) {
+      self.compare = self.compare.filter(
+        el => el.selectedAlternative.id !== product.selectedAlternative.id
+      );
     }
   }));

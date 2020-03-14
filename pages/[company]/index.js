@@ -20,18 +20,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Company = () => {
-  const router = useRouter();
+const Company = ({ company }) => {
   const classes = useStyles();
   const [grid, setGrid] = React.useState(false);
-  const { company } = router.query;
 
   const store = useStore();
-  const { data, compareProduct, isCompared } = store.productStore;
-
-  const selectToCompare = product => {
-    compareProduct(product);
-  };
+  const { data } = store.productStore;
 
   return (
     <React.Fragment>
@@ -74,12 +68,7 @@ const Company = () => {
           ) : (
             <Grid item xs={12} md={12}>
               {data.map((product, index) => (
-                <DetailedExpansionPanel
-                  key={index}
-                  product={product}
-                  compare={selectToCompare}
-                  isCompared={isCompared}
-                />
+                <DetailedExpansionPanel key={index} product={product} />
               ))}
             </Grid>
           )}
@@ -113,6 +102,12 @@ const Company = () => {
       </main>
     </React.Fragment>
   );
+};
+
+Company.getInitialProps = async ctx => {
+  const { company } = ctx.query;
+
+  return { company };
 };
 
 export default Company;
