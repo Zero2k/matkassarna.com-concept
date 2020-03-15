@@ -11,9 +11,6 @@ import formatString from '../../utils/formatString';
 const useStyles = makeStyles(theme => ({
   mainGrid: {
     padding: theme.spacing(3, 0, 3, 0)
-  },
-  table: {
-    minWidth: 650
   }
 }));
 
@@ -42,7 +39,7 @@ var data = [
   }
 ];
 
-const Compare = () => {
+const CompareCompany = () => {
   const router = useRouter();
   const classes = useStyles();
   const {
@@ -75,4 +72,4 @@ const Compare = () => {
   );
 };
 
-export default Compare;
+export default CompareCompany;

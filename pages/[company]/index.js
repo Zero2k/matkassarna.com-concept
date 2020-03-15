@@ -17,6 +17,9 @@ import { useStore } from '../../stores';
 const useStyles = makeStyles(theme => ({
   mainGrid: {
     marginTop: theme.spacing(3)
+  },
+  title: {
+    textTransform: 'capitalize'
   }
 }));
 
@@ -32,7 +35,7 @@ const Company = ({ company }) => {
       <main className={classes.mainGrid}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={7} md={8}>
-            <Typography variant="h1" gutterBottom>
+            <Typography variant="h1" gutterBottom className={classes.title}>
               {company}
             </Typography>
             <Typography paragraph>

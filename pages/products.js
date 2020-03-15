@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Products() {
+const Products = () => {
   const classes = useStyles();
 
   return (
@@ -26,4 +26,6 @@ export default function Products() {
       </main>
     </React.Fragment>
   );
-}
+};
+
+export default Products;

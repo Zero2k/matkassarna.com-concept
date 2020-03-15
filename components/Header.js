@@ -76,6 +76,7 @@ const Header = props => {
             </Typography>
             <div className={classes.toolbarNavigation}>
               <Button
+                color="inherit"
                 component={Link}
                 href="/"
                 startIcon={<HomeIcon />}
@@ -84,6 +85,7 @@ const Header = props => {
                 Home
               </Button>
               <Button
+                color="inherit"
                 component={Link}
                 href="/products"
                 startIcon={<ShoppingBasketIcon />}
@@ -93,8 +95,10 @@ const Header = props => {
             </div>
             <div className={classes.tollbarCompare}>
               <IconButton
-                aria-label="compare"
+                aria-label="/compare"
                 style={{ backgroundColor: 'transparent' }}
+                component={Link}
+                href="/compare"
               >
                 <StyledBadge badgeContent={compare.length} color="primary">
                   <SwapVertIcon />

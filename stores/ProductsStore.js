@@ -11,7 +11,6 @@ export const ProductsStore = types
   })
   .views(self => ({
     isCompared(product) {
-      console.log(containsObject(product, self.compare));
       return containsObject(product, self.compare);
     }
   }))
