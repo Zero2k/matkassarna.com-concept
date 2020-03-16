@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import theme from '../components/theme';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

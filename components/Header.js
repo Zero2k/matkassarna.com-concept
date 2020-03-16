@@ -76,19 +76,19 @@ const Header = props => {
             </Typography>
             <div className={classes.toolbarNavigation}>
               <Button
-                color="inherit"
                 component={Link}
                 href="/"
                 startIcon={<HomeIcon />}
                 className={classes.menuButton}
+                naked
               >
                 Home
               </Button>
               <Button
-                color="inherit"
                 component={Link}
                 href="/products"
                 startIcon={<ShoppingBasketIcon />}
+                naked
               >
                 Products
               </Button>
@@ -99,6 +99,7 @@ const Header = props => {
                 style={{ backgroundColor: 'transparent' }}
                 component={Link}
                 href="/compare"
+                naked
               >
                 <StyledBadge badgeContent={compare.length} color="primary">
                   <SwapVertIcon />

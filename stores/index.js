@@ -28,6 +28,13 @@ const companyStore = CompanyStore.create({
       url: '/microsoft',
       excerpt:
         'Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington.'
+    }),
+    CompanyModel.create({
+      id: '2',
+      name: 'Amazon',
+      url: '/amazon',
+      excerpt:
+        'Amazon.com, Inc. is an American multinational technology company based in Seattle, with 750,000 employees.'
     })
   ]
 });
@@ -53,7 +60,7 @@ const productStore = ProductsStore.create({
         OptionsModel.create({
           id: '234',
           value1: 3,
-          value2: 4,
+          value2: 6,
           alternatives: [
             AlternativesModel.create({
               id: '101',

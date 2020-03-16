@@ -4,11 +4,13 @@ import Link from '@material-ui/core/Link';
 
 const Copyright = () => {
   return (
-    <Typography variant="body2" align="center">
-      {`© ${new Date().getFullYear()} `}
+    <Typography variant="body2" align="left">
+      Copyright
+      {` © 2016 - ${new Date().getFullYear()} `}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Company.com.
       </Link>
+      {` All right reserved.`}
     </Typography>
   );
 };

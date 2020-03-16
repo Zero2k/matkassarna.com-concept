@@ -121,7 +121,7 @@ export default function Footer(props) {
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="subtitle1">COMPANY</Typography>
               <hr className={classes.hr} />
-              <List className={classes.list}>
+              <List dense className={classes.list}>
                 {about.map((link, index) => (
                   <ListItemLink
                     className={classes.listItem}
@@ -136,7 +136,7 @@ export default function Footer(props) {
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="subtitle1">PRODUCTS</Typography>
               <hr className={classes.hr} />
-              <List className={classes.list}>
+              <List dense className={classes.list}>
                 <ListItemLink className={classes.listItem} href="/">
                   <ListItemText primary="Single-line item" />
                 </ListItemLink>
@@ -148,7 +148,7 @@ export default function Footer(props) {
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="subtitle1">CATEGORIES</Typography>
               <hr className={classes.hr} />
-              <List className={classes.list}>
+              <List dense className={classes.list}>
                 {categories.map((link, index) => (
                   <ListItemLink
                     className={classes.listItem}
@@ -163,7 +163,7 @@ export default function Footer(props) {
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="subtitle1">INFORMATION</Typography>
               <hr className={classes.hr} />
-              <List className={classes.list}>
+              <List dense className={classes.list}>
                 {legal.map((link, index) => (
                   <ListItemLink
                     className={classes.listItem}

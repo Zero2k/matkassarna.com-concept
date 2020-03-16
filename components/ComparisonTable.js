@@ -6,6 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
+import Link from './Link';
 
 const ComparisonTable = props => {
   const { data, features } = props;
@@ -28,7 +29,9 @@ const ComparisonTable = props => {
   const productHeaderDetails = (product, i) => {
     return (
       <TableCell key={i}>
-        <img src={product.image} />
+        <Link href="/[company]" as={product.url}>
+          <img src={product.image} />
+        </Link>
       </TableCell>
     );
   };
@@ -49,7 +52,7 @@ const ComparisonTable = props => {
     return (
       <TableRow key={feature.text}>
         <TableCell>
-          <strong>{feature.text}</strong>
+          <strong style={{ fontSize: '18px' }}>{feature.text}</strong>
         </TableCell>
         {data.map(product => getFeatureForProduct(product, feature))}
       </TableRow>

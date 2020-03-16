@@ -46,6 +46,7 @@ const FeaturedCompany = props => {
               className={classes.button}
               component={Link}
               href="/[company]"
+              naked
               as={company.url}
               disableElevation
             >

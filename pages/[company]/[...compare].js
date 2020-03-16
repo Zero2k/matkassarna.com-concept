@@ -18,6 +18,7 @@ var data = [
   {
     id: '1',
     name: 'Name 1',
+    url: '/apple',
     image: 'https://okrsoftware.com/img/logos/weekdone.png',
     feature1: 'feature 1 of product 1',
     feature2: 'feature 2 of product 1',
@@ -26,14 +27,8 @@ var data = [
   {
     id: '2',
     name: 'Name 2',
+    url: '#',
     image: 'https://okrsoftware.com/img/logos/perdoo.png',
-    feature2: 'feature 2 of product 2',
-    feature3: 'feature 3 of product 2'
-  },
-  {
-    id: '3',
-    name: 'Name 3',
-    image: 'https://okrsoftware.com/img/logos/weekdone.png',
     feature2: 'feature 2 of product 2',
     feature3: 'feature 3 of product 2'
   }
