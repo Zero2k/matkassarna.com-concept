@@ -17,8 +17,6 @@ const Compare = props => {
   const { url } = props;
   const classes = useStyles();
 
-  console.log(url);
-
   return (
     <Link href="/[company]/[...compare]" as={url}>
       <div className={classes.root}>

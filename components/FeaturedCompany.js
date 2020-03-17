@@ -24,13 +24,19 @@ const useStyles = makeStyles(theme => ({
 
 const FeaturedCompany = props => {
   const classes = useStyles();
-  const { company } = props;
+  const { company, fullWidth } = props;
+  const setWidth = fullWidth ? 4 : 6;
 
   return (
-    <Grid item xs={12} sm={6} md={6}>
+    <Grid item xs={12} sm={6} md={setWidth}>
       <Card className={classes.card}>
         <div className={classes.cardDetails}>
-          <CardActionArea component="a" href={company.url}>
+          <CardActionArea
+            component={Link}
+            href="/[company]"
+            naked
+            as={company.url}
+          >
             <CardContent>
               <Typography variant="h5" gutterBottom>
                 {company.name}
@@ -78,7 +84,8 @@ FeaturedCompany.defaultProps = {
     name: 'Company',
     url: '/',
     excerpt: 'text'
-  }
+  },
+  fullWidth: false
 };
 
 export default FeaturedCompany;

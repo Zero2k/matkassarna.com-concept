@@ -134,14 +134,14 @@ export default function Footer(props) {
               </List>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Typography variant="subtitle1">PRODUCTS</Typography>
+              <Typography variant="subtitle1">COMPANIES</Typography>
               <hr className={classes.hr} />
               <List dense className={classes.list}>
                 <ListItemLink className={classes.listItem} href="/">
-                  <ListItemText primary="Single-line item" />
+                  <ListItemText primary="Apple" />
                 </ListItemLink>
                 <ListItemLink className={classes.listItem} href="/">
-                  <ListItemText primary="Single-line item" />
+                  <ListItemText primary="Microsoft" />
                 </ListItemLink>
               </List>
             </Grid>

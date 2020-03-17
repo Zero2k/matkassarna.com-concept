@@ -247,7 +247,7 @@ const DetailedExpansionPanel = props => {
             variant="contained"
             disableElevation
           >
-            View More
+            Read More
           </Button>
         </ExpansionPanelActions>
       </ExpansionPanel>

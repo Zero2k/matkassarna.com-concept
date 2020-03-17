@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import DetailedExpansionPanel from '../../components/DetailedExpansionPanel';
+import FeaturedCompany from '../../components/FeaturedCompany';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -14,14 +14,11 @@ export default function Companies() {
 
   return (
     <React.Fragment>
-      <main>
-        <Grid container spacing={5} className={classes.mainGrid}>
-          <Grid item xs={12} md={12}>
-            <h1>Companies</h1>
-            <DetailedExpansionPanel />
-          </Grid>
-        </Grid>
-      </main>
+      <Grid container spacing={3} className={classes.mainGrid}>
+        {[0, 1, 2, 3].map((item, index) => (
+          <FeaturedCompany key={index} fullWidth />
+        ))}
+      </Grid>
     </React.Fragment>
   );
 }

@@ -11,10 +11,10 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Link from './Link';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -33,9 +33,6 @@ const useStyles = makeStyles(theme => ({
   details: {
     alignItems: 'center'
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(17)
-  },
   helper: {
     padding: '10px !important',
     height: '76px'
@@ -53,7 +50,33 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     height: 0,
-    paddingTop: '65%'
+    paddingTop: '60%',
+    position: 'relative'
+  },
+  overlay: {
+    position: 'absolute',
+    backgroundColor: 'rgba(67, 165, 147, 0.6)',
+    top: '12%',
+    width: '100%',
+    textAlign: 'center',
+    padding: '10px 5px 10px 5px',
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    KhtmlUserSelect: 'none',
+    MozUserSelect: 'none',
+    msUserSelect: 'none'
+  },
+  title: {
+    color: '#fff',
+    fontSize: theme.typography.pxToRem(24),
+    fontWeight: 500,
+    letterSpacing: '1.5px'
+  },
+  subTitle: {
+    color: '#fff',
+    fontSize: theme.typography.pxToRem(14),
+    fontWeight: 400,
+    letterSpacing: '1px'
   }
 }));
 
@@ -70,14 +93,23 @@ const DetailedCard = props => {
 
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media} image="/no-image.jpg" title="Text" />
-      <CardContent>
-        <Grid container spacing={2} direction="row" alignItems="center">
-          <Grid item xs={12}>
-            <Typography variant="h3" className={classes.heading}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image="https://godtlevertpimimages.blob.core.windows.net/psl-images/PROD/a2be5d8c-d63b-4fa0-b41a-e859adf15ce0/6a2d0b60-84d6-4830-9945-58d518d27ac2/MEDIUM_d4f38e2c-84fc-417c-a985-f37b6301ffa1.png"
+        >
+          <div className={classes.overlay}>
+            <Typography variant="h3" className={classes.title} gutterBottom>
               Title
             </Typography>
-          </Grid>
+            <Typography variant="h4" className={classes.subTitle}>
+              Subtitle
+            </Typography>
+          </div>
+        </CardMedia>
+      </CardActionArea>
+      <CardContent>
+        <Grid container spacing={2} direction="row" alignItems="center">
           <Grid item xs={6} md={6} className={classes.helper}>
             <Typography variant="caption">
               Select
@@ -150,7 +182,7 @@ const DetailedCard = props => {
           variant="contained"
           disableElevation
         >
-          View More
+          Read More
         </Button>
       </CardActions>
     </Card>
