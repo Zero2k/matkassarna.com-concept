@@ -72,6 +72,38 @@ const productStore = ProductsStore.create({
           ]
         })
       ]
+    }),
+    ProductModel.create({
+      id: '123',
+      name: 'Macbook Pro',
+      options: [
+        OptionsModel.create({
+          id: '134',
+          value1: 2,
+          value2: 4,
+          alternatives: [
+            AlternativesModel.create({
+              id: '100',
+              name: 'No alternative',
+              price: 440
+            })
+          ]
+        }),
+        OptionsModel.create({
+          id: '234',
+          value1: 3,
+          value2: 6,
+          alternatives: [
+            AlternativesModel.create({
+              id: '101',
+              name: 'No alternative',
+              price: 440
+            }),
+            AlternativesModel.create({ id: '202', name: 'White', price: 700 }),
+            AlternativesModel.create({ id: '303', name: 'Black', price: 850 })
+          ]
+        })
+      ]
     })
   ],
   compare: []

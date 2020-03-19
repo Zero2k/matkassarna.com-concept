@@ -21,7 +21,9 @@ import { useStore } from '../stores';
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    paddingBottom: theme.spacing(2)
+    '&:not(:last-child)': {
+      paddingBottom: theme.spacing(2)
+    }
   },
   heading: {
     fontSize: theme.typography.pxToRem(17)

@@ -15,8 +15,8 @@ const useStyles = makeStyles(theme => ({
 const Products = () => {
   const classes = useStyles();
   const router = useRouter();
-  const [selectedCategory, setCategory] = React.useState('All');
-  const { category = 'All' } = router.query;
+  const [selectedCategory, setCategory] = React.useState('all');
+  const { category = 'all' } = router.query;
 
   React.useEffect(() => {
     if (router.query.category) {

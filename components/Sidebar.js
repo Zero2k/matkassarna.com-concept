@@ -1,8 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -13,11 +10,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const social = [
-  { name: 'GitHub', icon: GitHubIcon },
-  { name: 'Twitter', icon: TwitterIcon },
-  { name: 'Facebook', icon: FacebookIcon }
-];
+import { social } from '../config/social_media';
 
 const Sidebar = () => {
   const classes = useStyles();

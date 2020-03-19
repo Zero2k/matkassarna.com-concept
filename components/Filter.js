@@ -37,12 +37,12 @@ const Filter = props => {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="All Products" value="All" {...a11yProps(0)} />
-          <Tab label="Technology" value="Technology" {...a11yProps(1)} />
-          <Tab label="Mobile" value="Mobile" {...a11yProps(2)} />
-          <Tab label="Deployment" value="Deployment" {...a11yProps(3)} />
-          <Tab label="Development" value="Development" {...a11yProps(4)} />
-          <Tab label="Utilities" value="Utilities" {...a11yProps(5)} />
+          <Tab label="All Products" value="all" {...a11yProps(0)} />
+          <Tab label="Technology" value="technology" {...a11yProps(1)} />
+          <Tab label="Mobile" value="mobile" {...a11yProps(2)} />
+          <Tab label="Deployment" value="deployment" {...a11yProps(3)} />
+          <Tab label="Development" value="development" {...a11yProps(4)} />
+          <Tab label="Utilities" value="utilities" {...a11yProps(5)} />
         </Tabs>
       </AppBar>
     </div>

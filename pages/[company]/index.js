@@ -6,13 +6,13 @@ import Typography from '@material-ui/core/Typography';
 
 import Sidebar from '../../components/Sidebar';
 import Chips from '../../components/Chips';
-import Faq from '../../components/Faq';
 import CompanyCard from '../../components/CompanyCard';
 import DetailedExpansionPanel from '../../components/DetailedExpansionPanel';
 import DetailedCard from '../../components/DetailedCard';
 import FeaturedCompany from '../../components/FeaturedCompany';
 import Sortbar from '../../components/Sortbar';
 import { useStore } from '../../stores';
+import InfoTabs from '../../components/InfoTabs';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -79,8 +79,7 @@ const Company = ({ company }) => {
 
         <Grid container spacing={3}>
           <Grid item xs={12} md={12}>
-            <h3>Frequently Asked Questions:</h3>
-            <Faq
+            <InfoTabs
               questions={[
                 { question: 'Do you ship internationally?', answer: 'text1' },
                 {
@@ -88,6 +87,7 @@ const Company = ({ company }) => {
                   answer: 'text2'
                 }
               ]}
+              text={``}
             />
           </Grid>
           <Grid item xs={12} md={9}>

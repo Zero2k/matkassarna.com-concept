@@ -94,10 +94,7 @@ const DetailedCard = props => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://godtlevertpimimages.blob.core.windows.net/psl-images/PROD/a2be5d8c-d63b-4fa0-b41a-e859adf15ce0/6a2d0b60-84d6-4830-9945-58d518d27ac2/MEDIUM_d4f38e2c-84fc-417c-a985-f37b6301ffa1.png"
-        >
+        <CardMedia className={classes.media} image="/no-image.jpg">
           <div className={classes.overlay}>
             <Typography variant="h3" className={classes.title} gutterBottom>
               Title

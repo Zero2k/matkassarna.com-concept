@@ -28,26 +28,29 @@ const Faq = props => {
   };
 
   return (
-    <div className={classes.root}>
-      {questions.map((q, index) => (
-        <ExpansionPanel
-          key={index}
-          expanded={expanded === index}
-          onChange={handleChange(index)}
-        >
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
+    <React.Fragment>
+      <h3>Frequently Asked Questions:</h3>
+      <div className={classes.root}>
+        {questions.map((q, index) => (
+          <ExpansionPanel
+            key={index}
+            expanded={expanded === index}
+            onChange={handleChange(index)}
           >
-            <Typography className={classes.heading}>{q.question}</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>{q.answer}</Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      ))}
-    </div>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography className={classes.heading}>{q.question}</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography>{q.answer}</Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        ))}
+      </div>
+    </React.Fragment>
   );
 };
 

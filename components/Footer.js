@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Link from './Link';
 
+import { about, companies, categories, legal } from '../config/footer';
+import { social } from '../config/social_media';
 import Copyright from './Copyright';
 
 const useStyles = makeStyles(theme => ({
@@ -63,34 +62,6 @@ const ListItemLink = props => {
   return <ListItem component={Link} {...props} />;
 };
 
-const social = [
-  { name: 'GitHub', icon: GitHubIcon, url: '#' },
-  { name: 'Twitter', icon: TwitterIcon, url: '#' },
-  { name: 'Facebook', icon: FacebookIcon, url: '#' }
-];
-
-const about = [
-  { name: 'About Us', url: '/about' },
-  { name: 'Blog', url: '#' },
-  { name: 'Contact Us', url: '#' },
-  { name: 'Sitemap', url: '/sitemap' },
-  { name: 'FAQs', url: '#' }
-];
-
-const categories = [
-  { name: 'Technology', url: '#' },
-  { name: 'Mobile', url: '#' },
-  { name: 'Deployment', url: '#' },
-  { name: 'Development', url: '#' },
-  { name: 'Utilities', url: '#' }
-];
-
-const legal = [
-  { name: 'Cookies', url: '#' },
-  { name: 'Privacy Policy', url: '#' },
-  { name: 'Terms of Use', url: '#' }
-];
-
 export default function Footer(props) {
   const classes = useStyles();
   const { description, title } = props;
@@ -127,6 +98,8 @@ export default function Footer(props) {
                     className={classes.listItem}
                     key={index}
                     href={link.url}
+                    as={link.url}
+                    naked
                   >
                     <ListItemText primary={link.name} />
                   </ListItemLink>
@@ -137,12 +110,17 @@ export default function Footer(props) {
               <Typography variant="subtitle1">COMPANIES</Typography>
               <hr className={classes.hr} />
               <List dense className={classes.list}>
-                <ListItemLink className={classes.listItem} href="/">
-                  <ListItemText primary="Apple" />
-                </ListItemLink>
-                <ListItemLink className={classes.listItem} href="/">
-                  <ListItemText primary="Microsoft" />
-                </ListItemLink>
+                {companies.map((link, index) => (
+                  <ListItemLink
+                    className={classes.listItem}
+                    key={index}
+                    href="/[company]"
+                    as={link.url}
+                    naked
+                  >
+                    <ListItemText primary={link.name} />
+                  </ListItemLink>
+                ))}
               </List>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
@@ -153,7 +131,9 @@ export default function Footer(props) {
                   <ListItemLink
                     className={classes.listItem}
                     key={index}
-                    href={link.url}
+                    href="/products/[category]"
+                    as={link.url}
+                    naked
                   >
                     <ListItemText primary={link.name} />
                   </ListItemLink>
@@ -169,6 +149,8 @@ export default function Footer(props) {
                     className={classes.listItem}
                     key={index}
                     href={link.url}
+                    as={link.url}
+                    naked
                   >
                     <ListItemText primary={link.name} />
                   </ListItemLink>
