@@ -14,14 +14,12 @@ export default function Sitemap() {
 
   return (
     <React.Fragment>
-      <main>
-        <Grid container spacing={5} className={classes.mainGrid}>
-          <Grid item xs={12} md={12}>
-            <h1>Sitemap</h1>
-            <DetailedExpansionPanel />
-          </Grid>
+      <Grid container spacing={5} className={classes.mainGrid}>
+        <Grid item xs={12} md={12}>
+          <h1>Sitemap</h1>
+          <DetailedExpansionPanel />
         </Grid>
-      </main>
+      </Grid>
     </React.Fragment>
   );
 }

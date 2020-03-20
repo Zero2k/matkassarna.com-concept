@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 const InfoTabs = props => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const { questions, text } = props;
+  const { questions, text, delivery } = props;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,18 +63,18 @@ const InfoTabs = props => {
         >
           <Tab label="INFO" {...a11yProps(0)} />
           <Tab label="FAQ" {...a11yProps(1)} />
-          <Tab label="ABOUT" {...a11yProps(2)} />
-          <Tab label="DELIVERY" {...a11yProps(3)} />
+          <Tab label="DELIVERY" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Info text={text} />
+        <Info title="Information" text={text} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Faq questions={questions} />
       </TabPanel>
-      <TabPanel value={value} index={2}></TabPanel>
-      <TabPanel value={value} index={3}></TabPanel>
+      <TabPanel value={value} index={2}>
+        <Info title="Delivery" text={delivery} />
+      </TabPanel>
     </div>
   );
 };

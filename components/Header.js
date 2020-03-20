@@ -60,86 +60,84 @@ const Header = props => {
   const { compare } = store.productStore;
 
   return useObserver(() => (
-    <React.Fragment>
-      <div className={classes.root}>
-        <Container>
-          <Toolbar disableGutters className={classes.toolbar}>
-            <Typography
-              component="h2"
-              variant="h5"
-              color="inherit"
-              align="center"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              {title}
-            </Typography>
-            <div className={classes.toolbarNavigation}>
-              <Button
-                component={Link}
-                href="/"
-                startIcon={<HomeIcon />}
-                className={classes.menuButton}
-                naked
-              >
-                Home
-              </Button>
-              <Button
-                component={Link}
-                href="/products"
-                startIcon={<ShoppingBasketIcon />}
-                naked
-              >
-                Products
-              </Button>
-            </div>
-            <div className={classes.tollbarCompare}>
-              <IconButton
-                aria-label="/compare"
-                style={{ backgroundColor: 'transparent' }}
-                component={Link}
-                href="/compare"
-                naked
-              >
-                <StyledBadge badgeContent={compare.length} color="primary">
-                  <SwapVertIcon />
-                </StyledBadge>
-              </IconButton>
-            </div>
-          </Toolbar>
-          <Toolbar
-            component="nav"
-            variant="dense"
-            disableGutters
-            className={classes.toolbarSecondary}
+    <div className={classes.root}>
+      <Container>
+        <Toolbar disableGutters className={classes.toolbar}>
+          <Typography
+            component="h2"
+            variant="h5"
+            color="inherit"
+            align="center"
+            noWrap
+            className={classes.toolbarTitle}
           >
-            {sections.map(section => (
-              <Link
-                color="inherit"
-                noWrap
-                key={section.title}
-                variant="body2"
-                href="/[company]"
-                as={section.url}
-                className={classes.toolbarLink}
-              >
-                {section.title}
-              </Link>
-            ))}
+            {title}
+          </Typography>
+          <div className={classes.toolbarNavigation}>
+            <Button
+              component={Link}
+              href="/"
+              startIcon={<HomeIcon />}
+              className={classes.menuButton}
+              naked
+            >
+              Home
+            </Button>
+            <Button
+              component={Link}
+              href="/products"
+              startIcon={<ShoppingBasketIcon />}
+              naked
+            >
+              Products
+            </Button>
+          </div>
+          <div className={classes.tollbarCompare}>
+            <IconButton
+              aria-label="/compare"
+              style={{ backgroundColor: 'transparent' }}
+              component={Link}
+              href="/compare"
+              naked
+            >
+              <StyledBadge badgeContent={compare.length} color="primary">
+                <SwapVertIcon />
+              </StyledBadge>
+            </IconButton>
+          </div>
+        </Toolbar>
+        <Toolbar
+          component="nav"
+          variant="dense"
+          disableGutters
+          className={classes.toolbarSecondary}
+        >
+          {sections.map(section => (
             <Link
               color="inherit"
               noWrap
+              key={section.title}
               variant="body2"
-              href="/companies"
-              as="/companies"
+              href="/[company]"
+              as={section.url}
               className={classes.toolbarLink}
             >
-              View All
+              {section.title}
             </Link>
-          </Toolbar>
-        </Container>
-      </div>
-    </React.Fragment>
+          ))}
+          <Link
+            color="inherit"
+            noWrap
+            variant="body2"
+            href="/companies"
+            as="/companies"
+            className={classes.toolbarLink}
+          >
+            View All
+          </Link>
+        </Toolbar>
+      </Container>
+    </div>
   ));
 };
 
