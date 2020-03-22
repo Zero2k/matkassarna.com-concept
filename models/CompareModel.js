@@ -23,7 +23,8 @@ export const CompareModel = types
   .model('CompareModel', {
     id: types.identifier,
     name: types.string,
-    options: OptionsModel,
+    options: types.array(OptionsModel),
+    selectedOption: types.maybe(OptionsModel),
     selectedAlternative: types.maybe(SelectedModel)
   })
   .views(self => ({}))

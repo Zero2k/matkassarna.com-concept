@@ -72,6 +72,38 @@ const productStore = ProductsStore.create({
           ]
         })
       ]
+    }),
+    ProductModel.create({
+      id: '234',
+      name: 'IMac',
+      options: [
+        OptionsModel.create({
+          id: '456',
+          value1: 2,
+          value2: 4,
+          alternatives: [
+            AlternativesModel.create({
+              id: '200',
+              name: 'No alternative',
+              price: 550
+            })
+          ]
+        }),
+        OptionsModel.create({
+          id: '567',
+          value1: 3,
+          value2: 6,
+          alternatives: [
+            AlternativesModel.create({
+              id: '201',
+              name: 'No alternative',
+              price: 350
+            }),
+            AlternativesModel.create({ id: '202', name: 'White', price: 450 }),
+            AlternativesModel.create({ id: '303', name: 'Black', price: 550 })
+          ]
+        })
+      ]
     })
   ],
   compare: []

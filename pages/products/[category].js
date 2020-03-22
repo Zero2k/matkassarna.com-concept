@@ -9,6 +9,9 @@ import DetailedCard from '../../components/DetailedCard';
 const useStyles = makeStyles(theme => ({
   mainGrid: {
     marginTop: theme.spacing(3)
+  },
+  title: {
+    textTransform: 'capitalize'
   }
 }));
 
@@ -22,8 +25,13 @@ const Category = () => {
     <React.Fragment>
       <Grid container spacing={3} className={classes.mainGrid}>
         <Grid item md={12}>
-          <Typography variant="h1" component="h1" align="center" gutterBottom>
-            Category
+          <Typography
+            variant="h1"
+            align="center"
+            gutterBottom
+            className={classes.title}
+          >
+            {category}
           </Typography>
           <Typography variant="h5" component="h2" align="center">
             Based on available data from their respective websites.

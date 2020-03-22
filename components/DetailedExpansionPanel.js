@@ -18,6 +18,9 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { useStore } from '../stores';
 
+import { productReducer } from '../hooks/productReducer';
+import { useReducer } from '../hooks/useReducer';
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -66,195 +69,184 @@ const DetailedExpansionPanel = props => {
   const classes = useStyles();
   const store = useStore();
   const [expanded, setExpanded] = React.useState(true);
-  const [value, setValue] = React.useState(props.product.options[0].value1);
-  const [productState, setProductState] = React.useState({
-    ...props.product,
-    options: props.product.options[0],
-    selectedAlternative: props.product.options[0].alternatives[0]
-  });
+  const [product, dispatch] = useReducer(productReducer, []);
   const { compareProduct, isCompared, stopComparing } = store.productStore;
+
+  React.useEffect(() => {
+    dispatch({ type: 'setProduct', product: props.product.toJSON() });
+  }, []);
 
   const setNumber = (event, value) => {
     if (value !== null) {
-      setValue(value);
-
-      const selectedOption = props.product.options.filter(
-        item => item.value1 == value
-      )[0];
-
-      setProductState({
-        ...productState,
-        options: selectedOption,
-        selectedAlternative: selectedOption.alternatives[0]
-      });
+      dispatch({ type: 'setNumber', value });
     }
   };
 
   const setAlternative = event => {
     const { value } = event.target;
 
-    const selectedAlternative = productState.options.alternatives.filter(
-      item => item.id == value
-    )[0];
-
-    setProductState({
-      ...productState,
-      selectedAlternative: selectedAlternative
-    });
+    dispatch({ type: 'setAlternative', value });
   };
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  return useObserver(() => (
-    <div className={classes.root}>
-      <ExpansionPanel expanded={expanded} onChange={handleChange(true)}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-        >
-          <div className={classes.column}>
-            <Typography variant="h3" className={classes.heading}>
-              {productState.name}
-            </Typography>
-          </div>
-          {!expanded && (
-            <>
-              <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>
-                  Select: {value}
-                </Typography>
-              </div>
-              <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>
-                  Number: {productState.options.value2}
-                </Typography>
-              </div>
-              <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>
-                  Price: ${productState.selectedAlternative.price}
-                </Typography>
-              </div>
-            </>
-          )}
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.details}>
-          <Grid
-            container
-            spacing={1}
-            direction="row"
-            justify="center"
-            alignItems="center"
+  return useObserver(() => {
+    if (!product[0]) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <div className={classes.root}>
+        <ExpansionPanel expanded={expanded} onChange={handleChange(true)}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1c-content"
+            id="panel1c-header"
           >
-            <Grid item xs={12} md>
-              <img width="100%" src="/no-image.jpg"></img>
-            </Grid>
-            <Grid item xs={6} md className={classes.helper}>
-              <Typography variant="caption">
-                Select
-                <br />
-                <ToggleButtonGroup
-                  size="small"
-                  value={value}
-                  exclusive
-                  onChange={setNumber}
-                >
-                  {props.product.options.map(item => (
-                    <ToggleButton
-                      key={item.id}
-                      value={item.value1}
-                      className={classes.toggleButton}
-                    >
-                      {item.value1}
-                    </ToggleButton>
-                  ))}
-                </ToggleButtonGroup>
+            <div className={classes.column}>
+              <Typography variant="h3" className={classes.heading}>
+                {product[0].name}
               </Typography>
-            </Grid>
-            <Grid item xs={6} md className={classes.helper}>
-              <Typography variant="caption">
-                Number
-                <br />
-                <span className={classes.info}>
-                  {productState.options.value2}
-                </span>
-              </Typography>
-            </Grid>
-            <Grid item xs={6} md className={classes.helper}>
-              <Typography variant="caption">
-                <FormControl className={classes.formControl}>
-                  <Typography variant="caption">Alternative</Typography>
-                  <NativeSelect
-                    name="alternative"
-                    value={productState.selectedAlternative.id}
-                    onChange={setAlternative}
+            </div>
+            {!expanded && (
+              <>
+                <div className={classes.column}>
+                  <Typography className={classes.secondaryHeading}>
+                    Select: {product[0].selectedOption.value1}
+                  </Typography>
+                </div>
+                <div className={classes.column}>
+                  <Typography className={classes.secondaryHeading}>
+                    Number: {product[0].selectedOption.value2}
+                  </Typography>
+                </div>
+                <div className={classes.column}>
+                  <Typography className={classes.secondaryHeading}>
+                    Price: ${product[0].selectedAlternative.price}
+                  </Typography>
+                </div>
+              </>
+            )}
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.details}>
+            <Grid
+              container
+              spacing={1}
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid item xs={12} md>
+                <img width="100%" src="/no-image.jpg"></img>
+              </Grid>
+              <Grid item xs={6} md className={classes.helper}>
+                <Typography variant="caption">
+                  Select
+                  <br />
+                  <ToggleButtonGroup
+                    size="small"
+                    value={product[0].selectedOption.value1}
+                    exclusive
+                    onChange={setNumber}
                   >
-                    {productState.options.alternatives.map(item =>
-                      item.name === '' ? (
-                        ''
-                      ) : (
-                        <option value={item.id} key={item.id}>
-                          {item.name}
-                        </option>
-                      )
-                    )}
-                  </NativeSelect>
-                </FormControl>
-              </Typography>
+                    {product[0].options.map(item => (
+                      <ToggleButton
+                        key={item.id}
+                        value={item.value1}
+                        className={classes.toggleButton}
+                      >
+                        {item.value1}
+                      </ToggleButton>
+                    ))}
+                  </ToggleButtonGroup>
+                </Typography>
+              </Grid>
+              <Grid item xs={6} md className={classes.helper}>
+                <Typography variant="caption">
+                  Number
+                  <br />
+                  <span className={classes.info}>
+                    {product[0].selectedOption.value2}
+                  </span>
+                </Typography>
+              </Grid>
+              <Grid item xs={6} md className={classes.helper}>
+                <Typography variant="caption">
+                  <FormControl className={classes.formControl}>
+                    <Typography variant="caption">Alternative</Typography>
+                    <NativeSelect
+                      name="alternative"
+                      value={product[0].selectedAlternative.id}
+                      onChange={setAlternative}
+                    >
+                      {product[0].selectedOption.alternatives.map(item =>
+                        item.name === '' ? (
+                          ''
+                        ) : (
+                          <option value={item.id} key={item.id}>
+                            {item.name}
+                          </option>
+                        )
+                      )}
+                    </NativeSelect>
+                  </FormControl>
+                </Typography>
+              </Grid>
+              <Grid item xs={6} md className={classes.helper}>
+                <Typography variant="caption">
+                  Price
+                  <br />
+                  <span className={classes.info}>
+                    ${product[0].selectedAlternative.price}
+                  </span>
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={6} md className={classes.helper}>
-              <Typography variant="caption">
-                Price
-                <br />
-                <span className={classes.info}>
-                  ${productState.selectedAlternative.price}
-                </span>
-              </Typography>
-            </Grid>
-          </Grid>
-        </ExpansionPanelDetails>
-        <Divider />
-        <ExpansionPanelActions>
-          {!isCompared(productState) ? (
+          </ExpansionPanelDetails>
+          <Divider />
+          <ExpansionPanelActions>
+            {!isCompared(product[0]) ? (
+              <Button
+                size="medium"
+                color="primary"
+                startIcon={<SwapVertIcon />}
+                onClick={() => {
+                  compareProduct({
+                    id: product[0].id,
+                    name: product[0].name,
+                    options: product[0].options,
+                    selectedOption: product[0].selectedOption,
+                    selectedAlternative: product[0].selectedAlternative
+                  });
+                }}
+              >
+                Compare
+              </Button>
+            ) : (
+              <Button
+                size="medium"
+                color="primary"
+                startIcon={<ClearIcon />}
+                onClick={() => stopComparing(product[0])}
+              >
+                Remove
+              </Button>
+            )}
             <Button
               size="medium"
-              color="primary"
-              startIcon={<SwapVertIcon />}
-              onClick={() => {
-                compareProduct({
-                  id: productState.id,
-                  name: productState.name,
-                  options: productState.options.toJSON(),
-                  selectedAlternative: productState.selectedAlternative.toJSON()
-                });
-              }}
+              color="secondary"
+              variant="contained"
+              disableElevation
             >
-              Compare
+              Read More
             </Button>
-          ) : (
-            <Button
-              size="medium"
-              color="primary"
-              startIcon={<ClearIcon />}
-              onClick={() => stopComparing(productState)}
-            >
-              Remove
-            </Button>
-          )}
-          <Button
-            size="medium"
-            color="secondary"
-            variant="contained"
-            disableElevation
-          >
-            Read More
-          </Button>
-        </ExpansionPanelActions>
-      </ExpansionPanel>
-    </div>
-  ));
+          </ExpansionPanelActions>
+        </ExpansionPanel>
+      </div>
+    );
+  });
 };
 
 DetailedExpansionPanel.defaultProps = {

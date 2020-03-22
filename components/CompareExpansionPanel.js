@@ -86,12 +86,12 @@ const CompareExpansionPanel = props => {
             <>
               <div className={classes.column}>
                 <Typography className={classes.secondaryHeading}>
-                  Select: {productState.options.value1}
+                  Select: {productState.selectedOption.value1}
                 </Typography>
               </div>
               <div className={classes.column}>
                 <Typography className={classes.secondaryHeading}>
-                  Number: {productState.options.value2}
+                  Number: {productState.selectedOption.value2}
                 </Typography>
               </div>
               <div className={classes.column}>
@@ -118,7 +118,7 @@ const CompareExpansionPanel = props => {
                 Select
                 <br />
                 <span className={classes.info}>
-                  {productState.options.value1}
+                  {productState.selectedOption.value1}
                 </span>
               </Typography>
             </Grid>
@@ -127,7 +127,7 @@ const CompareExpansionPanel = props => {
                 Number
                 <br />
                 <span className={classes.info}>
-                  {productState.options.value2}
+                  {productState.selectedOption.value2}
                 </span>
               </Typography>
             </Grid>
