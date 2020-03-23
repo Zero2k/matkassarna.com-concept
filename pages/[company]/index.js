@@ -61,9 +61,9 @@ const Company = ({ company }) => {
           <Sortbar setGrid={setGrid} />
         </Grid>
         {grid ? (
-          [1, 2, 3].map((item, index) => (
+          data.map((product, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <DetailedCard />
+              <DetailedCard key={index} product={product} />
             </Grid>
           ))
         ) : (

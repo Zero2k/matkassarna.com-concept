@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import Filter from '../../components/Filter';
 import DetailedCard from '../../components/DetailedCard';
 
+import { useStore } from '../../stores';
+
 const useStyles = makeStyles(theme => ({
   mainGrid: {
     marginTop: theme.spacing(3)
@@ -17,6 +19,9 @@ const Products = () => {
   const router = useRouter();
   const [selectedCategory, setCategory] = React.useState('all');
   const { category = 'all' } = router.query;
+
+  const store = useStore();
+  const { data } = store.productStore;
 
   React.useEffect(() => {
     if (router.query.category) {
@@ -43,9 +48,9 @@ const Products = () => {
         <Grid item xs={12}>
           <Filter category={selectedCategory} handleChange={handleChange} />
         </Grid>
-        {[1, 2, 3].map((item, index) => (
+        {data.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <DetailedCard />
+            <DetailedCard key={index} product={product} />
           </Grid>
         ))}
       </Grid>

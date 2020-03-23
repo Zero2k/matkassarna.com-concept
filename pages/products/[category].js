@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 
 import DetailedCard from '../../components/DetailedCard';
 
+import { useStore } from '../../stores';
+
 const useStyles = makeStyles(theme => ({
   mainGrid: {
     marginTop: theme.spacing(3)
@@ -19,7 +21,9 @@ const Category = () => {
   const classes = useStyles();
   const router = useRouter();
   const { category } = router.query;
-  console.log(category);
+
+  const store = useStore();
+  const { data } = store.productStore;
 
   return (
     <React.Fragment>
@@ -37,9 +41,9 @@ const Category = () => {
             Based on available data from their respective websites.
           </Typography>
         </Grid>
-        {[1, 2, 3].map((item, index) => (
+        {data.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <DetailedCard />
+            <DetailedCard key={index} product={product} />
           </Grid>
         ))}
       </Grid>
