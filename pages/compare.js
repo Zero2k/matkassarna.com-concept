@@ -28,7 +28,7 @@ const CompareProducts = () => {
   return useObserver(() => (
     <React.Fragment>
       <Grid container spacing={3} className={classes.mainGrid}>
-        <Grid item md={12}>
+        <Grid item sm={12}>
           <Typography variant="h1" component="h1" align="center" gutterBottom>
             Compare Products
           </Typography>
@@ -36,9 +36,11 @@ const CompareProducts = () => {
             Based on available data from their respective websites.
           </Typography>
         </Grid>
-        <Grid container spacing={5} className={classes.mainGrid}>
-          <Grid item xs={12} md={12}>
-            {compare.length > 0 ? <Products /> : <NoResult />}
+        <Grid item sm={12}>
+          <Grid container spacing={3} className={classes.mainGrid}>
+            <Grid item xs={12} md={12}>
+              {compare.length > 0 ? <Products /> : <NoResult />}
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

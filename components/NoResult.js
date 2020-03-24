@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
     minHeight: '200px'
   },
   notFound: {
-    width: '620px',
     textAlign: 'center',
     paddingLeft: '15px',
     paddingRight: '15px'

@@ -109,10 +109,6 @@ const DetailedCard = props => {
     dispatch({ type: 'setAlternative', value });
   };
 
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
   return useObserver(() => {
     if (!product[0]) {
       return <div>Loading...</div>;
