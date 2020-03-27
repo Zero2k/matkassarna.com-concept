@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import Link from './Link';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,8 +27,10 @@ const Chips = props => {
         <Chip
           key={index}
           label={category.name}
-          component="a"
-          href="#chip"
+          component={Link}
+          naked
+          href="/products/[category]"
+          as={`products/${category.url}`}
           clickable
         />
       ))}

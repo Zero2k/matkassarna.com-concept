@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import DetailedExpansionPanel from '../components/DetailedExpansionPanel';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -9,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Sitemap() {
+const Sitemap = () => {
   const classes = useStyles();
 
   return (
@@ -17,9 +16,10 @@ export default function Sitemap() {
       <Grid container spacing={5} className={classes.mainGrid}>
         <Grid item xs={12} md={12}>
           <h1>Sitemap</h1>
-          <DetailedExpansionPanel />
         </Grid>
       </Grid>
     </React.Fragment>
   );
-}
+};
+
+export default Sitemap;

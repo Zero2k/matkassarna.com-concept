@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 const Filter = props => {
   const classes = useStyles();
-  const { category, handleChange } = props;
+  const { data, category, handleChange } = props;
 
   return (
     <div className={classes.root}>
@@ -35,18 +36,24 @@ const Filter = props => {
           indicatorColor="primary"
           variant="scrollable"
           scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
+          aria-label="All categories"
         >
-          <Tab label="All Products" value="all" {...a11yProps(0)} />
-          <Tab label="Technology" value="technology" {...a11yProps(1)} />
-          <Tab label="Mobile" value="mobile" {...a11yProps(2)} />
-          <Tab label="Deployment" value="deployment" {...a11yProps(3)} />
-          <Tab label="Development" value="development" {...a11yProps(4)} />
-          <Tab label="Utilities" value="utilities" {...a11yProps(5)} />
+          {data.map((item, index) => (
+            <Tab
+              label={item.name}
+              value={item.value}
+              key={index}
+              {...a11yProps(index)}
+            />
+          ))}
         </Tabs>
       </AppBar>
     </div>
   );
+};
+
+Filter.propTypes = {
+  data: PropTypes.array
 };
 
 export default Filter;

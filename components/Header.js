@@ -77,6 +77,7 @@ const Header = props => {
             <Button
               component={Link}
               href="/"
+              as="/"
               startIcon={<HomeIcon />}
               className={classes.menuButton}
               naked
@@ -86,6 +87,7 @@ const Header = props => {
             <Button
               component={Link}
               href="/products"
+              as="/products"
               startIcon={<ShoppingBasketIcon />}
               naked
             >
@@ -98,6 +100,7 @@ const Header = props => {
               style={{ backgroundColor: 'transparent' }}
               component={Link}
               href="/compare"
+              as="/compare"
               naked
             >
               <StyledBadge badgeContent={compare.length} color="primary">

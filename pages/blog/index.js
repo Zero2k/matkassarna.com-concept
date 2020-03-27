@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 import Filter from '../../components/Filter';
-import DetailedCard from '../../components/DetailedCard';
+import PostCard from '../../components/PostCard';
 
 import { useStore } from '../../stores';
-import { categories } from '../../config/product_categories';
+import { categories } from '../../config/blog_categories';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Products = () => {
+const Blog = () => {
   const classes = useStyles();
   const router = useRouter();
   const [selectedCategory, setCategory] = React.useState('all');
@@ -34,13 +34,9 @@ const Products = () => {
 
   const handleChange = (event, newValue) => {
     setCategory(newValue);
-    router.push(
-      `/products?category=${newValue}`,
-      `/products?category=${newValue}`,
-      {
-        shallow: true
-      }
-    );
+    router.push(`/blog?category=${newValue}`, `/blog?category=${newValue}`, {
+      shallow: true
+    });
   };
 
   return (
@@ -55,7 +51,7 @@ const Products = () => {
         </Grid>
         {data.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <DetailedCard key={index} product={product} />
+            <PostCard key={index} />
           </Grid>
         ))}
       </Grid>
@@ -63,4 +59,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Blog;

@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Link from '../components/Link';
 
-export default function About() {
+const About = () => {
   return (
     <Container maxWidth="sm">
       <Box my={4}>
@@ -24,4 +24,6 @@ export default function About() {
       </Box>
     </Container>
   );
-}
+};
+
+export default About;

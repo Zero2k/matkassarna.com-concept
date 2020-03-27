@@ -1,6 +1,6 @@
 export const about = [
   { name: 'About Us', url: '/about' },
-  { name: 'Blog', url: '#' },
+  { name: 'Blog', url: '/blog' },
   { name: 'Contact Us', url: '#' },
   { name: 'Sitemap', url: '/sitemap' },
   { name: 'FAQs', url: '#' }

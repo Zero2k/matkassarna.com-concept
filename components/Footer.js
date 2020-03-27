@@ -62,7 +62,7 @@ const ListItemLink = props => {
   return <ListItem component={Link} {...props} />;
 };
 
-export default function Footer(props) {
+const Footer = props => {
   const classes = useStyles();
   const { description, title } = props;
 
@@ -167,9 +167,11 @@ export default function Footer(props) {
       </div>
     </footer>
   );
-}
+};
 
 Footer.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string
 };
+
+export default Footer;

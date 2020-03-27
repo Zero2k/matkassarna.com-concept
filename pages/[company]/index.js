@@ -48,7 +48,10 @@ const Company = ({ company }) => {
           </Typography>
           <Chips
             title="Categories"
-            categories={[{ name: 'category 1' }, { name: 'category 2' }]}
+            categories={[
+              { name: 'Technology', url: 'technology' },
+              { name: 'Mobile', url: 'mobile' }
+            ]}
           />
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
