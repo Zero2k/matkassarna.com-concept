@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   toolbarNavigation: {
     flex: 1
   },
-  tollbarCompare: {},
+  toolbarCompare: {},
   toolbarSecondary: {
     justifyContent: 'space-between',
     overflowX: 'auto',
@@ -94,9 +94,8 @@ const Header = props => {
               Products
             </Button>
           </div>
-          <div className={classes.tollbarCompare}>
+          <div className={classes.toolbarCompare}>
             <IconButton
-              aria-label="/compare"
               style={{ backgroundColor: 'transparent' }}
               component={Link}
               href="/compare"

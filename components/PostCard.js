@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import Link from './Link';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -24,7 +25,12 @@ const PostCard = () => {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea
+        component={Link}
+        href="/blog/[slug]"
+        naked
+        as="/blog/test"
+      >
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
@@ -32,7 +38,7 @@ const PostCard = () => {
             </Avatar>
           }
           title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          subheader="September 14"
         />
         <CardMedia
           className={classes.media}
