@@ -14,6 +14,8 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 
+import { openSocialWindow } from '../../utils/socialShare';
+
 const useStyles = makeStyles(theme => ({
   mainGrid: {
     marginTop: theme.spacing(3)
@@ -39,9 +41,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main
   },
   green: {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.share.main,
     '&:hover': {
-      backgroundColor: '#2e7366'
+      backgroundColor: theme.palette.share.hover
     }
   },
   speedDial: {
@@ -60,15 +62,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const actions = [
-  { icon: <FileCopyIcon />, name: 'Copy URL' },
-  { icon: <FacebookIcon />, name: 'Facebook' },
-  { icon: <TwitterIcon />, name: 'Twitter' }
+  { icon: <FacebookIcon />, value: 'facebook', name: 'Facebook' },
+  { icon: <TwitterIcon />, value: 'twitter', name: 'Twitter' }
 ];
 
 const Post = () => {
   const classes = useStyles();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
+  const { asPath } = router;
   const { slug } = router.query;
 
   const handleOpen = () => {
@@ -121,12 +123,20 @@ const Post = () => {
                 hidden={false}
                 direction={'left'}
               >
+                <SpeedDialAction
+                  key="Copy URL"
+                  icon={<FileCopyIcon />}
+                  tooltipTitle="Copy URL"
+                  onClick={() => console.log(process.env.URL + asPath)}
+                />
                 {actions.map(action => (
                   <SpeedDialAction
                     key={action.name}
                     icon={action.icon}
                     tooltipTitle={action.name}
-                    onClick={() => console.log('Share ', action.name)}
+                    onClick={() =>
+                      openSocialWindow(action.value, process.env.URL + asPath)
+                    }
                   />
                 ))}
               </SpeedDial>

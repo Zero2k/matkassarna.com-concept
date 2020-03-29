@@ -14,6 +14,10 @@ let theme = createMuiTheme({
     error: {
       main: red.A400
     },
+    share: {
+      main: '#bdbdbd',
+      hover: '#333333'
+    },
     background: {
       default: '#f9f9f9',
       paper: '#fdfdfd'
